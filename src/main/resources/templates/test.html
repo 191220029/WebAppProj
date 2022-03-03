@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<hr>
+<!--all html elements can be replaced by thymeleaf-->
+<div th:text="${msg}"></div>
+<div th:utext="${msg}"></div>
+
+<hr>
+<h3 th:each="user:${users}" th:text="${user}"></h3>
+<hr>
+<h3 th:each="user:${users}">[[ ${user} ]]</h3>
+</body>
+</html>

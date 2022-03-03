@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<!--侧边栏-->
+<nav class="navbar-default navbar-side" role="navigation" th:fragment="sidebar">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+            <li>
+                <div class="user-img-div">
+                    <img th:src="@{/img/user.png}" class="img-thumbnail" />
+
+                    <div class="inner-text">
+                        [[${session.loginUser}]]
+                        <br />
+                        <small>Last Login : 2 Weeks Ago </small>
+                    </div>
+                </div>
+
+            </li>
+
+
+            <li>
+                <a id="Dashboard_a" th:href="@{/index}"><i class="fa fa-dashboard "></i>Dashboard</a>
+            </li>
+            <li>
+                <a id="UI_Elements_a" th:href="@{#}"><i class="fa fa-desktop "></i>UI Elements <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a id="Tabs_Panels_a" th:href="@{/panel-tabs}"><i class="fa fa-toggle-on"></i>Tabs & Panels</a>
+                    </li>
+                    <li>
+                        <a id="Notifications_a" th:href="@{/notification}"><i class="fa fa-bell "></i>Notifications</a>
+                    </li>
+                    <li>
+                        <a id="Progressbars_a" th:href="@{/progress}"><i class="fa fa-circle-o "></i>Progressbars</a>
+                    </li>
+                    <li>
+                        <a id="Buttons_a" th:href="@{/buttons}"><i class="fa fa-code "></i>Buttons</a>
+                    </li>
+                    <li>
+                        <a id="Icons_a" th:href="@{/icons}"><i class="fa fa-bug "></i>Icons</a>
+                    </li>
+                    <li>
+                        <a id="Wizard_a" th:href="@{/wizard}"><i class="fa fa-bug "></i>Wizard</a>
+                    </li>
+                    <li>
+                        <a id="Typography_a" th:href="@{/typography}"><i class="fa fa-edit "></i>Typography</a>
+                    </li>
+                    <li>
+                        <a id="Grid_a" th:href="@{/grid}"><i class="fa fa-eyedropper "></i>Grid</a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <li>
+                <a id="Extra_Pages_a" th:href="@{#}"><i class="fa fa-yelp "></i>Extra Pages <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a id="Invoice_a" th:href="@{/invoice}"><i class="fa fa-coffee"></i>Invoice</a>
+                    </li>
+                    <li>
+                        <a id="Pricing_a" th:href="@{/pricing}"><i class="fa fa-flash "></i>Pricing</a>
+                    </li>
+                    <li>
+                        <a id="Components_a" th:href="@{/component}"><i class="fa fa-key "></i>Components</a>
+                    </li>
+                    <li>
+                        <a id="Social_a" th:href="@{/social}"><i class="fa fa-send "></i>Social</a>
+                    </li>
+
+                    <li>
+                        <a id="Messages_Tasks_a" th:href="@{/message-task}"><i class="fa fa-recycle "></i>Messages & Tasks</a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <li>
+                <a id="Data_Tables_a" th:href="@{/table}"><i class="fa fa-flash "></i>Data Tables </a>
+
+            </li>
+            <li>
+                <a id="Forms_a" th:href="@{#}"><i class="fa fa-bicycle "></i>Forms <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+
+                    <li>
+                        <a id="Basic_a" th:href="@{/form}"><i class="fa fa-desktop "></i>Basic </a>
+                    </li>
+                    <li>
+                        <a id="Advance_a" th:href="@{/form-advance}"><i class="fa fa-code "></i>Advance</a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <li>
+                <a id="Gallery_a" th:href="@{/gallery}"><i class="fa fa-anchor "></i>Gallery</a>
+            </li>
+            <li>
+                <a id="Error_Page_a" th:href="@{/error}"><i class="fa fa-bug "></i>Error Page</a>
+            </li>
+            <li>
+                <a id="Login_Page_a" th:href="@{/login}"><i class="fa fa-sign-in "></i>Login Page</a>
+            </li>
+            <li>
+                <a id="Multilevel_Link_a" th:href="@{#}"><i class="fa fa-sitemap "></i>Multilevel Link <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a id="Second_Level_Link1_a" th:href="@{#}"><i class="fa fa-bicycle "></i>Second Level Link</a>
+                    </li>
+                    <li>
+                        <a id="Second_Level_Link2_a" th:href="@{#}"><i class="fa fa-flask "></i>Second Level Link</a>
+                    </li>
+                    <li>
+                        <a id="Second_Level_Links_a" th:href="@{#}">Second Level Link<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a id="Third_Level_Link1_a" th:href="@{#}"><i class="fa fa-plus "></i>Third Level Link</a>
+                            </li>
+                            <li>
+                                <a id="Third_Level_Link2_a" th:href="@{#}"><i class="fa fa-comments-o "></i>Third Level Link</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a id="Blank_Page_a" th:href="@{/blank}"><i class="fa fa-square-o "></i>Blank Page</a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+
+</body>
+</html>
