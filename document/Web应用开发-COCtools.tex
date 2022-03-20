@@ -1,0 +1,177 @@
+\documentclass[a4paper,UTF8]{article}
+\usepackage{CJKutf8}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+%\usepackage[table,xcdraw]{xcolor}
+\usepackage{longtable}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usetikzlibrary{arrows,automata} 
+
+%\setmainfont                    [Ligatures=TeX]{Times New Roman}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+\newtheorem*{prove}{Proof}
+
+\lstset{
+	numbers=left, 
+	numberstyle=\tiny,
+	frame=shadowbox, 
+	breaklines=true, 
+	showspaces=false,
+ 	keywordstyle=\color{purple}\bfseries,
+	%identifierstyle=\color{brown!80!black},
+ 	commentstyle=\color{gray}
+	stringstyle=\color{brown!60!black},
+	rulesepcolor=\color{red!20!green!20!blue!20}
+}
+
+\begin{document}
+\begin{CJK}{UTF8}{gkai}
+\title{Web应用开发 -- COCtools}
+\author{
+    \begin{minipage}[b]{0.3\linewidth}
+      \begin{flushright}
+        Name: 傅小龙\\%\rule{3cm}{0.4pt}\\
+        \vbox to 1mm{}
+        Grade: 3%\rule{3cm}{0.4pt}
+      \end{flushright}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\linewidth}
+      \begin{flushright}
+        Dept: CS\\%\rule{3cm}{0.4pt}\\
+        \vbox to 1mm{}
+        ID: 191220029%\rule{3cm}{0.4pt}
+      \end{flushright}
+    \end{minipage}\\\\
+    \begin{minipage}[b]{0.3\linewidth}
+      \begin{flushright}
+        Name: 钱思辰\\%\rule{3cm}{0.4pt}\\
+        \vbox to 1mm{}
+        Grade: 3%\rule{3cm}{0.4pt}
+      \end{flushright}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.3\linewidth}
+      \begin{flushright}
+        Dept: CS\\%\rule{3cm}{0.4pt}\\
+        \vbox to 1mm{}
+        ID: 191220087%\rule{3cm}{0.4pt}
+      \end{flushright}
+    \end{minipage}
+}
+%\date{\color{red} \Large Due: Nov. 30, 2021}
+\date{}
+\maketitle
+
+\setlength{\baselineskip}{18pt}
+\begin{flushleft}
+\begin{CJK*}{UTF8}{gbsn}
+\section*{一、应用背景概述}
+\end{CJK*}
+\end{flushleft}
+	\par COCtools是给COC玩家设计的一款线上生成、管理调查员信息卡的网络应用。
+	\par 这里的COC是指以《克苏鲁的呼唤（The Call of Cthulhu）》为背景的桌上角色扮演游戏(TRPG)，俗称为“跑团”。游戏由剧本、骰子、玩家、守密人（主持人）组成。游戏形式分为“面团”（面对面）和“网团”（线上进行）。
+	\par 在进行游戏之前，玩家们需要先创建调查员。COC规则书中对创建调查员有着长达近20页的描述，这使得玩家在这一步需要花费不少时间。为了方便COC玩家更加便捷地创建调查员信息卡、并帮助他们更好地管理自己使用过的调查员信息卡，是COCtools设计和开发的首要目标。
+	\par 如果您想进一步了解COC规则书中对调查员信息卡创建的相关规则，可以在本文件的附录一中查看。\\
+
+\begin{flushleft}
+\begin{CJK*}{UTF8}{gbsn}
+\section*{二、技术概述}
+\end{CJK*}
+\end{flushleft}
+\par COCtools主要采用了html5,css3,javascript,thymeleaf等技术进行页面设计。采用spring-boot框架搭建服务器，使用JPA技术与mySQL数据库交换数据。
+
+\begin{flushleft}
+\begin{CJK*}{UTF8}{gbsn}
+\section*{三、应用功能概述}
+\end{CJK*}
+\end{flushleft}
+\par COCtools的主要功能如下：
+\begin{enumerate}
+	\item[1.] \textbf{用户服务}
+	COCtools为每个用户提供如下个人信息的管理：
+	\begin{longtable}{|l|l|l|}
+	\hline
+	字段名                     & 字段属性                                & 备注             \\ \hline
+	\endfirsthead
+	%
+	\multicolumn{3}{c}%
+	{{\bfseries Table \thetable\ continued from previous page}} \\
+	\hline
+	字段名                     & 字段属性                                & 备注             \\ \hline
+	\endhead
+	%
+	{\ul \textbf{user\_id}} & {\color[HTML]{717171} int UN AI PK} & 用户ID           \\ \hline
+	\textbf{user\_name}     & {\color[HTML]{717171} varchar(45)}  & 用户名称           \\ \hline
+	user\_password          & {\color[HTML]{717171} varchar(45)}  & 用户密码           \\ \hline
+	user\_gender            & {\color[HTML]{717171} tinyint UN}   & 性别             \\ \hline
+	user\_privilege\_level  & {\color[HTML]{717171} tinyint UN}   & 权限等级           \\ \hline
+	user\_assignment        & {\color[HTML]{717171} varchar(200)} & 个性签名           \\ \hline
+	user\_email             & {\color[HTML]{717171} varchar(100)} & 用户邮箱           \\ \hline
+	user\_icon\_path        & {\color[HTML]{717171} varchar(100)} & 用户头像所在的服务器文件路径 \\ \hline
+	user\_registory\_time   & {\color[HTML]{717171} date}         & 注册时间           \\ \hline
+	user\_last\_login\_time & {\color[HTML]{717171} date}         & 上一次登陆时间        \\ \hline
+	user\_status            & {\color[HTML]{717171} tinyint}      & 用户状态           \\ \hline
+	\end{longtable}
+
+	\begin{enumerate}
+		\item[a.] 用户登录
+		\par /login.html
+		\par 用户通过这一页面输入[用户名、密码]进行登录。登录成功后跳转到/index.html页面。给未注册的用户提供跳转至/logon.html的链接。任何未经登录就访问其他页面的行为将被拦截器拦截。
+		\item[b.] 用户注册
+		\par /logon.html
+		\par 采集新用户的信息并注册。注册成功后将跳转到/index.html页面
+		\item[c.] 用户主页
+		\par /index.html
+		\par 展示用户的部分个人信息，以侧边栏的形式提供用户跳转到其他功能页面的链接。
+		\item[d.] 个人信息管理
+		\par /userInfo.html
+		\par 用户在这一页面可以编辑自己的个人信息。
+	\end{enumerate}
+	\item[2.] \textbf{调查员信息卡创建}
+	\par 创建一张调查员信息卡将经过以下步骤：
+	\begin{enumerate}
+		\item[a.] 采集调查员基础信息。用户将填写调查员的基本信息。
+		\item[b.] 随机生成属性。模拟实际操作中用骰子决定调查员属性的过程。如果用户对随机生成的属性不够满意，可以重新生成。
+		\item[c.] 选取职业。用户将根据职业模板表选择调查员的职业。
+		\item[d.] 分配职业点数和兴趣点数。如果用户的行为违反了规则，COCtools将对此作出提醒并限制。
+		\item[e.] 创建调查员的背景信息
+		\item[f.] 决定调查员的随身装备和经济状况。
+	\end{enumerate}
+	\item[3.] \textbf{调查员信息卡管理}
+	\par /table.html
+	\begin{enumerate}
+		\item[a.] 展示用户创建过的所有调查员信息卡的基本信息列表。
+		\item[b.] 用户可以选择修改列表中的某一张信息卡，将跳转到/roleInfo.html页面
+	\end{enumerate}
+	\par /roleInfo.html
+	\begin{enumerate}
+		\item[a.] 用户可以修改调查员信息卡中的一些属性或信息。
+		\item[b.] 用户可以选择删除该信息卡。
+	\end{enumerate}
+\end{enumerate}
+
+\begin{flushleft}
+\begin{CJK*}{UTF8}{gbsn}
+\section*{附录一、COC规则书-创建调查员部分}
+\end{CJK*}
+\end{flushleft}
+\includepdf[pages={1-19}]{./rules/rolecardRule.pdf}
+
+
+
+\end{CJK}
+\end{document}
