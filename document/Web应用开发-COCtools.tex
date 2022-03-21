@@ -79,94 +79,129 @@
 \setlength{\baselineskip}{18pt}
 \begin{flushleft}
 \begin{CJK*}{UTF8}{gbsn}
-\section*{一、应用背景概述}
+\section*{一、引言}
 \end{CJK*}
 \end{flushleft}
-	\par COCtools是给COC玩家设计的一款线上生成、管理调查员信息卡的网络应用。
-	\par 这里的COC是指以《克苏鲁的呼唤（The Call of Cthulhu）》为背景的桌上角色扮演游戏(TRPG)，俗称为“跑团”。游戏由剧本、骰子、玩家、守密人（主持人）组成。游戏形式分为“面团”（面对面）和“网团”（线上进行）。
-	\par 在进行游戏之前，玩家们需要先创建调查员。COC规则书中对创建调查员有着长达近20页的描述，这使得玩家在这一步需要花费不少时间。为了方便COC玩家更加便捷地创建调查员信息卡、并帮助他们更好地管理自己使用过的调查员信息卡，是COCtools设计和开发的首要目标。
-	\par 如果您想进一步了解COC规则书中对调查员信息卡创建的相关规则，可以在本文件的附录一中查看。\\
-
-\begin{flushleft}
-\begin{CJK*}{UTF8}{gbsn}
-\section*{二、技术概述}
-\end{CJK*}
-\end{flushleft}
-\par COCtools主要采用了html5,css3,javascript,thymeleaf等技术进行页面设计。采用spring-boot框架搭建服务器，使用JPA技术与mySQL数据库交换数据。
-
-\begin{flushleft}
-\begin{CJK*}{UTF8}{gbsn}
-\section*{三、应用功能概述}
-\end{CJK*}
-\end{flushleft}
-\par COCtools的主要功能如下：
 \begin{enumerate}
-	\item[1.] \textbf{用户服务}
-	COCtools为每个用户提供如下个人信息的管理：
-	\begin{longtable}{|l|l|l|}
-	\hline
-	字段名                     & 字段属性                                & 备注             \\ \hline
-	\endfirsthead
-	%
-	\multicolumn{3}{c}%
-	{{\bfseries Table \thetable\ continued from previous page}} \\
-	\hline
-	字段名                     & 字段属性                                & 备注             \\ \hline
-	\endhead
-	%
-	{\ul \textbf{user\_id}} & {\color[HTML]{717171} int UN AI PK} & 用户ID           \\ \hline
-	\textbf{user\_name}     & {\color[HTML]{717171} varchar(45)}  & 用户名称           \\ \hline
-	user\_password          & {\color[HTML]{717171} varchar(45)}  & 用户密码           \\ \hline
-	user\_gender            & {\color[HTML]{717171} tinyint UN}   & 性别             \\ \hline
-	user\_privilege\_level  & {\color[HTML]{717171} tinyint UN}   & 权限等级           \\ \hline
-	user\_assignment        & {\color[HTML]{717171} varchar(200)} & 个性签名           \\ \hline
-	user\_email             & {\color[HTML]{717171} varchar(100)} & 用户邮箱           \\ \hline
-	user\_icon\_path        & {\color[HTML]{717171} varchar(100)} & 用户头像所在的服务器文件路径 \\ \hline
-	user\_registory\_time   & {\color[HTML]{717171} date}         & 注册时间           \\ \hline
-	user\_last\_login\_time & {\color[HTML]{717171} date}         & 上一次登陆时间        \\ \hline
-	user\_status            & {\color[HTML]{717171} tinyint}      & 用户状态           \\ \hline
-	\end{longtable}
-
-	\begin{enumerate}
-		\item[a.] 用户登录
-		\par /login.html
-		\par 用户通过这一页面输入[用户名、密码]进行登录。登录成功后跳转到/index.html页面。给未注册的用户提供跳转至/logon.html的链接。任何未经登录就访问其他页面的行为将被拦截器拦截。
-		\item[b.] 用户注册
-		\par /logon.html
-		\par 采集新用户的信息并注册。注册成功后将跳转到/index.html页面
-		\item[c.] 用户主页
-		\par /index.html
-		\par 展示用户的部分个人信息，以侧边栏的形式提供用户跳转到其他功能页面的链接。
-		\item[d.] 个人信息管理
-		\par /userInfo.html
-		\par 用户在这一页面可以编辑自己的个人信息。
-	\end{enumerate}
-	\item[2.] \textbf{调查员信息卡创建}
-	\par 创建一张调查员信息卡将经过以下步骤：
-	\begin{enumerate}
-		\item[a.] 采集调查员基础信息。用户将填写调查员的基本信息。
-		\item[b.] 随机生成属性。模拟实际操作中用骰子决定调查员属性的过程。如果用户对随机生成的属性不够满意，可以重新生成。
-		\item[c.] 选取职业。用户将根据职业模板表选择调查员的职业。
-		\item[d.] 分配职业点数和兴趣点数。如果用户的行为违反了规则，COCtools将对此作出提醒并限制。
-		\item[e.] 创建调查员的背景信息
-		\item[f.] 决定调查员的随身装备和经济状况。
-	\end{enumerate}
-	\item[3.] \textbf{调查员信息卡管理}
-	\par /table.html
-	\begin{enumerate}
-		\item[a.] 展示用户创建过的所有调查员信息卡的基本信息列表。
-		\item[b.] 用户可以选择修改列表中的某一张信息卡，将跳转到/roleInfo.html页面
-	\end{enumerate}
-	\par /roleInfo.html
-	\begin{enumerate}
-		\item[a.] 用户可以修改调查员信息卡中的一些属性或信息。
-		\item[b.] 用户可以选择删除该信息卡。
-	\end{enumerate}
+	\item[1.1] \textbf{编写目的}
+	\par COC Tools是给COC玩家设计的一款线上生成、管理调查员信息卡的网络应用。
+	\par 此需求规格说明书对COC Tools做了初步的用户需求分析，明确所要开发的Web应用应具有的功能、性能与界面，使分析人员及开发人员能清楚地了解用户的需求，并在此基础上进一步提出概要设计说明书和完成后续设计与开发工作。
 \end{enumerate}
 
 \begin{flushleft}
 \begin{CJK*}{UTF8}{gbsn}
-\section*{附录一、COC规则书-创建调查员部分}
+\section*{二、项目概述}
+\end{CJK*}
+\end{flushleft}
+\begin{enumerate}
+	\item[2.1] \textbf{项目背景}
+	\par COC是指以《克苏鲁的呼唤（The Call of Cthulhu）》为背景的桌上角色扮演游戏(TRPG)，俗称为“跑团”。游戏由剧本、骰子、玩家、守密人（主持人）组成。游戏形式分为“面团”（面对面）和“网团”（线上进行）。
+	\par 在进行游戏之前，玩家们需要先创建调查员。创建调查员在COC规则书中有着长达20页的描述，整个步骤繁琐而费时。让COC玩家能更加便捷地创建调查员信息卡、更好地管理自己使用过的调查员信息卡，是COC Tools设计和开发的首要目标。除此以外，COC Tools还将提供一些辅助功能，来帮助玩家们更好的进行游戏。
+	\par 如果您想进一步了解COC规则书中对调查员信息卡创建的相关规则，可以在本文件的附录
+中查看。
+	\item[2.2] \textbf{用户类和特征}
+	\par 该产品主要面向以下用户群体：
+	\par COC玩家：这类用户是该应用的主要使用者，他们将利用系统的用户部分，进行调查员信息卡的管理等操作。
+	\par 系统数据管理员：这类用户是该应用的次要使用者，他们将利用系统的管理部分，对后台用户信息进行审查和管理。
+	\item[2.3] \textbf{运行环境}
+	\par java 11.0.5或更高版本。
+	\item[2.4] \textbf{拟用技术}
+	\par COCtools主要采用了html5,css3,javascript,thymeleaf等技术进行页面设计。采用spring-boot框架搭建服务器，使用JPA技术与mySQL数据库交换数据。
+\end{enumerate}
+
+\begin{flushleft}
+\begin{CJK*}{UTF8}{gbsn}
+\section*{三、功能需求}
+\end{CJK*}
+\end{flushleft}
+\begin{enumerate}
+	\item[3.1] \textbf{功能分类}
+	\begin{enumerate}
+		\item[3.1.1] 用户服务功能：用户信息管理、用户登录、用户注册、用户主页
+		\item[3.1.2] 调查员信息卡管理功能：调查员信息卡创建、调查员信息卡管理、调查员信息卡删除
+		\item[3.1.3] 信息查阅：规则书查阅、COC相关附录查阅
+	\end{enumerate}
+	\item[3.2] \textbf{部分功能说明}
+	\begin{enumerate}
+		\item[3.2.1.] \textbf{用户服务功能}\\
+		COCtools为每个用户提供如下个人信息的管理：
+		\begin{longtable}{|l|l|l|}
+		\hline
+		字段名                     & 字段属性                                & 备注             \\ \hline
+		\endfirsthead
+		%
+		\multicolumn{3}{c}%
+		{{\bfseries Table \thetable\ continued from previous page}} \\
+		\hline
+		字段名                     & 字段属性                                & 备注             \\ \hline
+		\endhead
+		%
+		{\ul \textbf{user\_id}} & {\color[HTML]{717171} int UN AI PK} & 用户ID           \\ \hline
+		\textbf{user\_name}     & {\color[HTML]{717171} varchar(45)}  & 用户名称           \\ \hline
+		user\_password          & {\color[HTML]{717171} varchar(45)}  & 用户密码           \\ \hline
+		user\_gender            & {\color[HTML]{717171} tinyint UN}   & 性别             \\ \hline
+		user\_privilege\_level  & {\color[HTML]{717171} tinyint UN}   & 权限等级           \\ \hline
+		user\_assignment        & {\color[HTML]{717171} varchar(200)} & 个性签名           \\ \hline
+		user\_email             & {\color[HTML]{717171} varchar(100)} & 用户邮箱           \\ \hline
+		user\_icon\_path        & {\color[HTML]{717171} varchar(100)} & 用户头像所在的服务器文件路径 \\ \hline
+		user\_registory\_time   & {\color[HTML]{717171} date}         & 注册时间           \\ \hline
+		user\_last\_login\_time & {\color[HTML]{717171} date}         & 上一次登陆时间        \\ \hline
+		user\_status            & {\color[HTML]{717171} tinyint}      & 用户状态           \\ \hline
+		\end{longtable}
+	
+		\begin{enumerate}
+			\item[a.] 用户登录
+			\par /login.html
+			\par 用户通过这一页面输入[用户名、密码]进行登录。登录成功后跳转到/index.html页面。给未注册的用户提供跳转至/logon.html的链接。任何未经登录就访问其他页面的行为将被拦截器拦截。
+			\item[b.] 用户注册
+			\par /logon.html
+			\par 采集新用户的信息并注册。注册成功后将跳转到/index.html页面，并询问是否要查看规则书。
+			\item[c.] 用户主页
+			\par /index.html
+			\par 展示用户的部分个人信息，以侧边栏的形式提供用户跳转到其他功能页面的链接。
+			\item[d.] 个人信息管理
+			\par /userInfo.html
+			\par 用户在这一页面可以编辑自己的个人信息。
+		\end{enumerate}
+		\item[3.2.2.] \textbf{调查员信息卡管理功能}
+			\begin{enumerate}
+			\item[3.2.2.1] \textbf{调查员信息卡创建}
+			\par 创建一张调查员信息卡将经过以下步骤：
+			\begin{enumerate}
+				\item[a.] 采集调查员基础信息。用户将填写调查员的基本信息。
+				\item[b.] 随机生成属性。模拟实际操作中用骰子决定调查员属性的过程。如果用户对随机生成的属性不够满意，可以重新生成。
+				\item[c.] 选取职业。用户将根据职业模板表选择调查员的职业。
+				\item[d.] 分配职业点数和兴趣点数。如果用户的行为违反了规则，COCtools将对此作出提醒并限制。
+				\item[e.] 创建调查员的背景信息
+				\item[f.] 决定调查员的随身装备和经济状况。
+			\end{enumerate}
+			\par 创建完成的调查员信息卡将被存储到后台数据库中。
+			\item[3.2.2.2] \textbf{调查员信息卡管理}
+			\par /table.html
+			\begin{enumerate}
+				\item[a.] 展示用户创建过的所有调查员信息卡的基本信息列表。
+				\item[b.] 用户可以选择修改列表中的某一张信息卡，将跳转到/roleInfo.html页面
+			\end{enumerate}
+			\par /roleInfo.html
+			\begin{enumerate}
+				\item[a.] 用户可以按照规范的格式修改调查员信息卡中的一些属性或信息。
+				\item[b.] 用户可以选择删除该信息卡，这一操作需要用户进行二次确认。
+			\end{enumerate}
+		\end{enumerate}
+		\item[3.2.3] \textbf{规则书信息查阅}
+		\begin{enumerate}
+			\item[a.] COC规则书查阅
+			\par 用列表方式，向用户展示COC的主要规则内容。
+			\item[b.] COC规则书相关附录查阅
+		\end{enumerate}
+		\item[3.2.4] \textbf{数据管理功能}
+		\par 前面所述的所有服务产生的数据都将存储在mySQL数据库中。由JPA提供的接口进行数据交互。
+		\par 用户权限分为普通用户和管理员。用户的重要操作都做相应的日志记录以备查看。普通用户无法访问权限等级要求更高的数据。管理员能够查看用户的所有数据，并对不合理的内容做出封禁处理。
+	\end{enumerate}
+\end{enumerate}
+\begin{flushleft}
+\begin{CJK*}{UTF8}{gbsn}
+\section*{附录一、COC规则书-创建调查员}
 \end{CJK*}
 \end{flushleft}
 \includepdf[pages={1-19}]{./rules/rolecardRule.pdf}
