@@ -1,12 +1,13 @@
 server:
   port: 8081
 spring:
-  profiles:
-    active: dev #choose active setting profile
+  config:
+    active:
+      on-profile: dev #choose active setting profile
   datasource:
     username: root
-    password:
-    url: jdbc:mysql://localhost:3309/kesulu_online?useUnicode=true&characterEncoding=utf8
+    password: 123456
+    url: jdbc:mysql://localhost:3306/kesulu_online?useSSL=false&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true
       #url: jdbc:mysql://192.168.3.14:3306/student?useUnicode=true&characterEncoding=utf8
     sql-script-encoding: UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,7 +16,9 @@ spring:
 server:
   port: 8082
 spring:
-  profiles: dev #this part profile named 'dev'
+  config:
+    active:
+      on-profile: dev #this part profile named 'dev'
   thymeleaf:
     cache: false
   messages:
@@ -24,4 +27,6 @@ spring:
 server:
   port: 8083
 spring:
-  profiles: test
+  config:
+    active:
+      on-profile: test
