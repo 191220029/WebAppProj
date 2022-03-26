@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <!-- 页面的宽度与设备屏幕的宽度一致    初始缩放比例 1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login</title>
 
@@ -17,49 +18,45 @@
                 <img th:src="@{/img/logo-invoice.png}" />
             </div>
         </div>
-         <div class="row ">
-               
-                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-                           
-                            <div class="panel-body">
-                                <!--<form role="form" th:action="@{/user/login}">-->
-                                <form th:action="@{/user/login}">
-                                    <!--如果msg消息为空则不显示-->
-                                    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
-                                    <hr />
-                                    <h5>Enter Details to Login</h5>
-                                       <br />
-                                     <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" class="form-control" name="username" th:placeholder="#{login.username}" />
-                                        </div>
-                                                                              <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control" name="password"  th:placeholder="#{login.password}" />
-                                        </div>
-                                    <div class="form-group">
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" /> <a th:text="#{login.remember}">Remember me</a>
-                                            </label>
-                                            <span class="pull-right">
-                                                   <a th:href="@{/index}" th:text="#{login.forgetPassword}"></a>
-                                            </span>
-                                        </div>
-
-                                     <button class="btn btn-primary " th:text="#{login.btn}" type="submit"></button>
-                                    <hr />
-                                    Not register ? <a th:href="@{/index}" th:text="#{login.register}"></a><!-- or go to <a th:href="@{/index}">Home</a>-->
-                                    <hr />
-                                    <a class="btn-language" th:href="@{/login(language='zh_CN')}">中文</a>
-                                    <a class="btn-language" th:href="@{/login(language='en_US')}">English</a>
-                                    </form>
-                            </div>
-                           
+        <div class="row ">
+            <!-- bootstrap的栅格系统 自动将每行分为12列 -->
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+                <div class="panel-body">
+                    <!--<form role="form" th:action="@{/user/login}">-->
+                    <form th:action="@{/user/login}">
+                        <!--如果msg消息为空则不显示-->
+                        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                        <hr />
+                        <h5 th:text="#{login.guide}"></h5>
+                        <br />
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                            <input type="text" class="form-control" name="username" th:placeholder="#{login.username}" />
                         </div>
-                
-                
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                            <input type="password" class="form-control" name="password"  th:placeholder="#{login.password}" />
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" /> <a th:text="#{login.remember}"></a>
+                            </label>
+                                <span class="pull-right">
+                                    <a th:href="@{/index}" th:text="#{login.forgetPassword}"></a>
+                                </span>
+                        </div>
+
+                        <button class="btn btn-primary " th:text="#{login.btn}" type="submit"></button>
+                        <hr />
+                        <!-- 注册 -->
+                        <td th:text="#{login.notregister}"></td><a th:href="@{/logon}" th:text="#{login.register}"></a><!-- or go to <a th:href="@{/index}">Home</a>-->
+                        <hr />
+                        <a class="btn-language" th:href="@{/login(language='zh_CN')}">中文</a>
+                        <a class="btn-language" th:href="@{/login(language='en_US')}">English</a>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
 </body>
 </html>
