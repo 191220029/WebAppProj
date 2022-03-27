@@ -38,6 +38,6 @@ public class myMVCConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //设置拦截器其起作用的链接和默认不拦截的链接
         registry.addInterceptor(new LoginHandlerInterceptor())
-        .addPathPatterns("/**").excludePathPatterns("/login", "/logon", "/user/login", "/user/logon", "/css/**", "/fonts/**", "/img/**", "/js/**");
+        .addPathPatterns("/**").excludePathPatterns("/login", "/logon", "/user/login", "/user/logon", "/user/logon/**", "/css/**", "/fonts/**", "/img/**", "/js/**");
     }
 }

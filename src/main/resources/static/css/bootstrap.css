@@ -3510,6 +3510,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+
 .input-group-addon.input-sm {
   padding: 5px 10px;
   font-size: 12px;

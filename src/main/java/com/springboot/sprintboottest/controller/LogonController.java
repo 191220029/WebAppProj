@@ -13,20 +13,22 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LogonController {
     @GetMapping("/logon")
-    public String Logon(){
+    public String Logon() {
         return "logon";
     }
 
     @Autowired
     UserRepository userRepository;
+
     @RequestMapping("/user/logon")
     public String userLogon(
-            @RequestParam("username")String username,
-            Model model, HttpSession session){
-        if(username.isEmpty()){
+            @RequestParam("username") String username,
+            Model model, HttpSession session) {
+        if (username.isEmpty()) {
             model.addAttribute("msg", "用户名不能为空");
             return "logon";
         }
         return "login";
     }
+
 }
