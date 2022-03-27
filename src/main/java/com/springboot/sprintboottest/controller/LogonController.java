@@ -3,6 +3,7 @@ package com.springboot.sprintboottest.controller;
 import com.springboot.sprintboottest.Entity.user;
 import com.springboot.sprintboottest.Repository.UserRepository;
 import org.aspectj.bridge.Message;
+import com.springboot.sprintboottest.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LogonController {
     @GetMapping("/logon")
-    public String Logon(){
+    public String Logon() {
         return "logon";
     }
 
