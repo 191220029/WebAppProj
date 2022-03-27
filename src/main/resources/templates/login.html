@@ -24,7 +24,7 @@
                 <div class="panel-body">
                     <!--<form role="form" th:action="@{/user/login}">-->
                     <form th:action="@{/user/login}">
-                        <!--如果msg消息为空则不显示-->
+                        <!--如果msg消息为空则不显示   error tips-->
                         <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                         <hr />
                         <h5 th:text="#{login.guide}"></h5>
