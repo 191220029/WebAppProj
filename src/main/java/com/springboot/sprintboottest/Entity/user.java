@@ -12,6 +12,8 @@ public class user {
     @Id
     @Column(name = "UserId")
     private Integer UserId;
+    @Column(name = "UserName")
+    private String UserName;
     @Column(name = "UserPassword")
     private String UserPassword;
     @Column(name = "UserGender")
@@ -28,6 +30,15 @@ public class user {
     private String UserEmail;
     @Column(name = "UserIconPath")
     private String UserIconPath;
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
     @Column(name = "UserRegistoryTime")
     private Date UserRegistoryTime;
     @Column(name = "UserLastLoginTime")

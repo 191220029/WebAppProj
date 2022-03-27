@@ -13,5 +13,32 @@
 <h3 th:each="user:${users}" th:text="${user}"></h3>
 <hr>
 <h3 th:each="user:${users}">[[ ${user} ]]</h3>
+<div>
+    <a id="test">test your script</a>
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+</div>
 </body>
+<script type="text/javascript"></script>
+<script>
+    $("#test").click(function () {
+        console.log("click");
+        $.ajax({
+            type: "GET",
+            url: "/user/logon",
+            data: "username=testLogon" +
+                "&password=123456" +
+                "&gender=0" +
+                "&assignment=test for logon" +
+                "&email=test@qq.com" +
+                "&icon_path=NULL",
+            //dataType: "json",//数据响应格式
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log("Failed");
+            }
+        })
+    })
+</script>
 </html>
