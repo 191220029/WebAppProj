@@ -46,7 +46,7 @@ public class LogonController {
         List<user> users = userRepository.findsByUserName(username);
         //System.out.println(users);
         if(users.isEmpty()){
-            model.addAttribute("msg", "不存在该用户");
+            //model.addAttribute("msg", "不存在该用户");
             return "FALSE";
         }
         else {
@@ -54,5 +54,17 @@ public class LogonController {
             session.setAttribute("UserId", users.get(0).getUserId());
             return "OK";
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("/user/logon/DuplicateUserName")
+    public String DuplicateUserName(
+            @RequestParam("username") String username
+    ){
+        List<user> users = userRepository.findsByUserName(username);
+        if(users.isEmpty()){
+            return "FALSE";
+        }
+        return "TRUE";
     }
 }
