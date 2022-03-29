@@ -15,8 +15,15 @@
 <h3 th:each="user:${users}">[[ ${user} ]]</h3>
 <div>
     <a id="test">test your script</a>
-    <script th:src="@{/js/jquery-1.10.2.js}"></script>
 </div>
+<div>
+    <label class="upload-button" for="uploadImg">上传文件</label>
+    <form id="uploadImgFrom" enctype="multipart/form-data">
+        <input id="uploadImg" name="icon" type="file" accept=".png,.jpg,.png" style="position:absolute;clip:rect(0 0 0 0);">
+    </form>
+
+</div>
+<script th:src="@{/js/jquery-1.10.2.js}"></script>
 </body>
 <script type="text/javascript"></script>
 <script>
@@ -50,6 +57,30 @@
             },
             error: function (data) {
                 console.log("Failed");
+            }
+        })
+    })
+
+    $("#uploadImg").change(function (e) {
+        //console.log(e);
+        //console.log(e.currentTarget.files[0].name);
+        /*let suffix = e.currentTarget.files[0].name;
+        suffix = suffix.substring(suffix.lastIndexOf('.'));
+        let path = "test" + suffix;
+        console.log(path);*/
+        let img = new FormData(document.getElementById("uploadImgFrom"));
+        //console.log(img);
+        $.ajax({
+            type:"post",
+            data:img,
+            url:"/user/uploadIcon",
+            processData:false,
+            contentType:false,
+            success:function (data) {
+                console.log("success");
+            },
+            error:function (data) {
+                console.log("failed");
             }
         })
     })
