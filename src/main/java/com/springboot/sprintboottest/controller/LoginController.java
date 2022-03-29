@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class LoginController {
@@ -35,6 +37,9 @@ public class LoginController {
         else if(password.equals(u.getUserPassword())){
             session.setAttribute("loginUser", username);
             session.setAttribute("UserId", u.getUserId());
+            Date date = new Date();
+            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+            userRepository.setLoginTime(ft.format(date), u.getUserId());
             return "redirect:/index";
         }
         else {

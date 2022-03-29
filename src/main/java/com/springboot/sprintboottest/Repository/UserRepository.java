@@ -49,4 +49,12 @@ public interface UserRepository extends JpaRepository<user, Integer> {
             @Param("User_registory_time") String User_registory_time
             );
 
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE kesulu_online.user SET user_last_login_time = :loginTime" +
+            " WHERE user_id = :userId")
+    void setLoginTime(
+            @Param("loginTime") String loginTime,
+            @Param("userId") Integer userId
+    );
 }
