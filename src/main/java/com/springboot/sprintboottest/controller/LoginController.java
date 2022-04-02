@@ -37,6 +37,7 @@ public class LoginController {
         else if(password.equals(u.getUserPassword())){
             session.setAttribute("loginUser", username);
             session.setAttribute("UserId", u.getUserId());
+            session.setAttribute("lastLoginTime", u.getUserLastLoginTime());
             Date date = new Date();
             SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
             userRepository.setLoginTime(ft.format(date), u.getUserId());
