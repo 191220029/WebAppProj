@@ -21,13 +21,11 @@
                     <h3 th:text="欢迎注册"></h3>
                     <td th:text="已有账号？"></td><a th:href="@{/login}" th:text="登录"></a>
                     <br /><br /><br />
-                    <!--
-                    <form th:action="@{/user/logon}">
-                    -->
+                    <!-- <form th:action="@{/user/logon}"> -->
                         <!--用户名-->
                         <div class="form-group input-group">
                             <span class="input-group-addon">
-                                <td class="input-group-addon-another"><abbr title="用户名由中文构成" th:text="用户名  "></abbr></td>
+                                <td class="input-group-addon-another"><abbr title="6-30位字母、数字或_，字母开头" th:text="用户名"></abbr></td>
                             </span>
                             <input type="text" id="username" class="form-control" name="username" placeholder="请输入用户名"/>
                         </div>
@@ -35,7 +33,7 @@
                         <!--密码-->
                         <div class="form-group input-group">
                             <span class="input-group-addon">
-                                <td class="input-group-addon-another"><abbr title="密码需要规范" th:text="密码    "></abbr></td>
+                                <td class="input-group-addon-another"><abbr title="6-30位字母、数字、_或@" th:text="密码"></abbr></td>
                             </span>
                             <input type="password" id="password" class="form-control" name="password" placeholder="请输入密码" />
                         </div>
@@ -51,7 +49,7 @@
                         <!--邮箱-->
                         <div class="form-group input-group">
                             <span class="input-group-addon">
-                                <td class="input-group-addon-another"><abbr title="请注意邮箱的规范" th:text="注册邮箱  "></abbr></td>
+                                <td class="input-group-addon-another"><abbr title="请注意邮箱的规范" th:text="注册邮箱"></abbr></td>
                             </span>
                             <input type="text" id="mailbox" class="form-control" name="username" placeholder="请输入邮箱"/>
                         </div>
@@ -68,9 +66,7 @@
                         <!--注册按钮-->
                         <button class="btn btn-primary " id="submit" th:text="注册" type="submit"></button>
                         <hr />
-                    <!--
-                    </form>
-                    -->
+                    <!--</form>-->
                 </div>
             </div>
         </div>
@@ -99,10 +95,14 @@
         //console.log(mailbox);
         //console.log(gender);
         //TODO: 在这里完成用户输入的正确性检查，不通过的内容给出提示并终止提交(return)
-        let flag = true;
         //Step1: 用户名格式
-
-        //Step2: 用户名未被使用
+        //用户名格式，6-30位字母、数字或_，字母开头
+        if(/^[A-Za-z]\w{5,29}$/.test(username)==false){
+            alert("用户名" + username + "不符合规范");
+            return;
+        }
+        //Step2: 用户名已被使用
+        let flag = true;
         $.ajax({
             type: "GET",
             url: "/user/logon/DuplicateUserName",
@@ -122,15 +122,28 @@
         if(flag === false)
             return;
         //Step3: 密码格式
-
+        //密码格式，6-30位字母、数字或_
+        if(/^\w{6,30}$/.test(password)==false){
+            alert("设置的密码不符合规范");
+            return;
+        }
         //Step4: 两次密码输入一致性
-
+        if(password!=password_confirm){
+            alert("两次密码输入不一致，请重新确认");
+            return;
+        }
         //Step5: 邮箱格式
-
+        if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(mailbox)==false){
+            alert("输入的邮箱格式不正确");
+            return;
+        }
         //Step6: 性别>-1
-
+        if(gender<0){
+            alert("请选择性别");
+            return;
+        }
         //TODO: 完成正确性检查功能后，给下面的ajax代码段取消注释即可完成注册辣
-        /*
+
         $.ajax({
             type: "GET",
             url: "/user/logon",
@@ -155,7 +168,7 @@
                 alert("服务器似乎出现了一点问题，稍后再试试吧");
             }
         })
-        */
+
     })
 </script>
 
