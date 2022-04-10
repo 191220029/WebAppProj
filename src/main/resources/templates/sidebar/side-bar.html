@@ -8,7 +8,7 @@
         <ul class="nav" id="main-menu">
             <li>
                 <div class="user-img-div">
-                    <img th:src="@{/img/user.png}" class="img-thumbnail" />
+                    <img th:src="${session.photo}" class="img-thumbnail" width="64px" height="auto" />
 
                     <div class="inner-text">
                         [[${session.loginUser}]]

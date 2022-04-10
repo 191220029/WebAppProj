@@ -3,7 +3,7 @@
 <html lang="en">
 
 
-<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0" th:fragment="topbar">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -18,7 +18,7 @@
 
         <a th:href="@{/message-task}" class="btn btn-info" title="New Message"><b>0 </b><i class="fa fa-envelope-o fa-2x"></i></a>
         <a th:href="@{/message-task}" class="btn btn-primary" title="New Task"><b>0 </b><i class="fa fa-bars fa-2x"></i></a>
-        <a th:href="@{/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+        <a th:href="@{/user/logout}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
 
     </div>
 </nav>

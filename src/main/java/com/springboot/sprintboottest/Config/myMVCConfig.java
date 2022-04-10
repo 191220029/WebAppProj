@@ -7,6 +7,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Locale;
@@ -39,5 +40,13 @@ public class myMVCConfig implements WebMvcConfigurer {
         //设置拦截器其起作用的链接和默认不拦截的链接
         registry.addInterceptor(new LoginHandlerInterceptor())
         .addPathPatterns("/**").excludePathPatterns("/login", "/logon", "/test", "/testRequest", "/user/**", "/css/**","/fonts/**","/img/**","/js/**");
+    }
+
+    //配置本地资源映射路径
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler(
+                "/serverfs/**"
+        ).addResourceLocations("file:./serverfs/");
     }
 }
