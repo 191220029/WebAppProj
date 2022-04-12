@@ -465,10 +465,6 @@
         <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
-    <div id="footer-sec">
-        Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-    </div>
-    <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script th:src="@{/js/jquery-1.10.2.js}"></script>
@@ -505,9 +501,11 @@
                 for(let i = 0; i < data.length; i++){
                     let gender = "";
                     if(data[i].roleGender===1)
-                        gender = "♂";
+                        gender = "男";
+                    else if(data[i].roleGender===0)
+                        gender = "女";
                     else
-                        gender = "♀";
+                        gender = "其他";
                     //console.log("data["+i+"]="+data[i].roleCardId);
                     html+="<div class=\"panel panel-default\">"
                     +"<div class=\"panel-heading\">调查员信息"+(i+1)+"</div>"

@@ -13,34 +13,9 @@
     <link th:href="@{css/basic.css}" rel="stylesheet" />
     <!--CUSTOM MAIN STYLES-->
     <link th:href="@{css/custom.css}" rel="stylesheet" />
-    <!-- GOOGLE FONTS-->
-    <!--
-    <link th:href='@{http://fonts.useso.com/css?family=Open+Sans}' rel='stylesheet' type='text/css' />
-    -->
 </head>
 <body>
     <div id="wrapper">
-        <!--
-        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" th:href="@{/index}">COMPANY NAME</a>
-            </div>
-
-            <div class="header-right">
-
-                <a th:href="@{/message-task}" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-                <a th:href="@{/message-task}" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
-                <a th:href="@{/login}" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-
-            </div>
-        </nav>
-        -->
         <!-- /. NAV TOP  -->
         <div th:replace="~{topbar/topbar::topbar}"></div>
         <!-- /. NAV SIDE  -->
@@ -49,26 +24,25 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">DASHBOARD</h1>
-                        <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
-
+                        <h1 class="page-head-line">HomePage</h1>
+                        <h1 class="page-subhead-line">[[${session.assignment}]]</h1>
                     </div>
                 </div>
                 <!-- /. ROW  -->
                 <div class="row">
                     <div class="col-md-4">
                         <div class="main-box mb-red">
-                            <a th:href="@{#}">
-                                <i class="fa fa-bolt fa-5x"></i>
-                                <h5>Zero Issues</h5>
+                            <a th:href="@{/table}">
+                                <i class="fa fa-folder-open fa-5x"></i>
+                                <h5>Role Cards</h5>
                             </a>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="main-box mb-dull">
                             <a th:href="@{#}">
-                                <i class="fa fa-plug fa-5x"></i>
-                                <h5>40 Task In Check</h5>
+                                <i class="fa fa-pencil fa-5x"></i>
+                                <h5>New Role</h5>
                             </a>
                         </div>
                     </div>
@@ -76,13 +50,13 @@
                         <div class="main-box mb-pink">
                             <a th:href="@{#}">
                                 <i class="fa fa-dollar fa-5x"></i>
-                                <h5>200K Pending</h5>
+                                <h5>Reward Author</h5>
                             </a>
                         </div>
                     </div>
 
                 </div>
-                <!-- /. ROW  -->
+                <!--
 
                 <div class="row">
                     <div class="col-md-8">
@@ -125,20 +99,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--INDICATORS-->
                                     <ol class="carousel-indicators">
                                         <li data-target="#reviews" data-slide-to="0" class="active"></li>
                                         <li data-target="#reviews" data-slide-to="1"></li>
                                         <li data-target="#reviews" data-slide-to="2"></li>
                                     </ol>
-                                    <!--PREVIUS-NEXT BUTTONS-->
 
                                 </div>
 
                             </div>
 
                         </div>
-                        <!-- /. ROW  -->
                         <hr />
 
                         <div class="panel panel-default">
@@ -160,13 +131,11 @@
 
                                     </div>
                                 </div>
-                                <!--INDICATORS-->
                                 <ol class="carousel-indicators">
                                     <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
                                     <li data-target="#carousel-example" data-slide-to="1"></li>
                                     <li data-target="#carousel-example" data-slide-to="2"></li>
                                 </ol>
-                                <!--PREVIUS-NEXT BUTTONS-->
                                 <a class="left carousel-control" href="#carousel-example" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left"></span>
                                 </a>
@@ -176,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.REVIEWS &  SLIDESHOW  -->
+                    <!--
                     <div class="col-md-4">
 
                         <div class="panel panel-default">
@@ -225,11 +194,11 @@
 
 
                     </div>
-                    <!--/.Chat Panel End-->
                 </div>
+                -->
                 <!-- /. ROW  -->
 
-
+                <!--
                 <div class="row">
 
                     <div class="col-md-8">
@@ -244,13 +213,11 @@
                                 </p>
                             </a>
                         </div>
-                        <br />
-                        <!-- 16:9 aspect ratio -->
-                        <!--
+                        <br
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" th:src="@{https://www.youtube.com/embed/zpOULjyy-n8?rel=0}"></iframe>
                         </div>
-                        -->
+
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-info">
@@ -308,14 +275,14 @@
                                     </span>
                                     </a>
                                 </div>
-                                <!-- /.list-group -->
                                 <a th:href="@{#}" class="btn btn-info btn-block">View All Alerts</a>
                             </div>
 
                         </div>
                     </div>
                 </div>
-                <!--/.Row-->
+                -->
+                <!--
                 <hr />
                 <div class="row">
 
@@ -425,7 +392,7 @@
                                                     <h4 class="media-heading">Nulla gravida vitae  </h4>
                                                     Donec sit amet ligula enim. Duis vel condimentum massa.
               
-              <!-- Nested media object -->
+
                                                     <div class="media">
                                                         <a class="pull-left" href="#">
                                                             <img class="media-object img-circle img-comments" th:src="@{/img/user.gif}" />
@@ -455,7 +422,8 @@
                         </div>
                     </div>
                 </div>
-                <!--/.Row-->
+                -->
+                <!--=
                 <hr />
                 <div class="row" style="padding-bottom: 100px;">
                     <div class="col-md-6">
@@ -505,6 +473,7 @@
                         </div>
                     </div>
                 </div>
+                -->
                 <!--/.ROW-->
 
             </div>
@@ -514,9 +483,6 @@
     </div>
     <!-- /. WRAPPER  -->
 
-    <div id="footer-sec">
-        Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
-    </div>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->

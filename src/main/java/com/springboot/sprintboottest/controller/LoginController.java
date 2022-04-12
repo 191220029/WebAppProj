@@ -38,17 +38,20 @@ public class LoginController {
             session.setAttribute("loginUser", username);
             session.setAttribute("UserId", u.getUserId());
             session.setAttribute("lastLoginTime", u.getUserLastLoginTime());
-            if(u.getUserIconPath() == null){
-                session.setAttribute("photo", "/img/user.png");
-            }
-            else
-                session.setAttribute("photo", u.getUserIconPath());
-            //System.out.println(u.getUserIconPath());
-            Date date = new Date();
-            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-            userRepository.setLoginTime(ft.format(date), u.getUserId());
-            return "redirect:/index";
-        }
+        if(u.getUserIconPath() == null || u.getUserIconPath().equals("null"))
+            session.setAttribute("photo", "/serverfs/img/usricon/default.jpg");
+        else
+            session.setAttribute("photo", u.getUserIconPath());
+        if(u.getUserAssignment() == null)
+            session.setAttribute("assignment", "");
+        else
+            session.setAttribute("assignment", u.getUserAssignment());
+        //System.out.println(u.getUserIconPath());
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        userRepository.setLoginTime(ft.format(date), u.getUserId());
+        return "redirect:/index";
+    }
         else {
             model.addAttribute("msg", "密码错误");
             return "login";
