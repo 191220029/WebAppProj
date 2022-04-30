@@ -468,21 +468,6 @@
 
     }
 
-    function editInputGen(e){
-        console.log(e);
-    }
 
-    function editorSubmit(url) {
-        $.get(url, function (data, status) {
-            //console.log(url);
-            if(status==="success") {
-                window.alert(data);
-            }
-            else {
-                window.alert("寄，修改出错。刷重试也可能没用。")
-            }
-        })
-        location.reload();
-    }
 </script>
 </html>

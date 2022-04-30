@@ -8,16 +8,19 @@ import com.springboot.sprintboottest.Repository.RoleBaseInfoRepository;
 import com.springboot.sprintboottest.Repository.RoleElementRepository;
 import com.springboot.sprintboottest.Repository.RoleRepository;
 import com.springboot.sprintboottest.Repository.RoleSkillRepository;
+import javafx.util.Pair;
 import org.apache.catalina.Role;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.ConsoleHandler;
 
 @RestController
 public class RolesTableDataController {
@@ -39,6 +42,11 @@ public class RolesTableDataController {
             @PathVariable("RoleCardId") Integer RoleCardId
     ){
         return roleRepository.findRole(RoleCardId);
+    }
+
+    @GetMapping("/roleInfo/defaultSkillValue")
+    public role defaultSkillInfo(){
+        return roleRepository.findRole(3);
     }
 
     @GetMapping("/roleBaseInfo/Edit/RoleCardId={RoleCardId}&Name={Name}&" +
@@ -132,6 +140,28 @@ public class RolesTableDataController {
             @PathVariable("RoleId") Integer RoleId
     ){
         return roleSkillRepository.findRoleSkill(RoleId);
+    }
+
+    @RequestMapping(value = "/roleSkill/modifyRoleSkillValue",
+                    method = RequestMethod.POST,
+                    produces = {"application/json;charset=UTF-8"})
+    public String ModifyRoleSkillValue(
+        //@RequestBody String body
+        @RequestParam("roleCardId") Integer rcId,
+        @RequestParam("inputValue") List<String> jsonValues
+    ){
+//        System.out.println(body);
+        //System.out.println(rcId);
+        List<Pair<String, String>> inputValues = new ArrayList<>();
+        for(String s : jsonValues){
+            //System.out.println(s);
+            Pair<String, String> item = new Pair<String, String>(s.substring(s.indexOf('\"') + 1, s.indexOf('=')),
+                    s.substring(s.indexOf('=') + 1, s.lastIndexOf('\"')));
+            inputValues.add(item);
+        }
+//        for(Pair<String, String> item : inputValues)
+//            System.out.println(item);
+        return "OK";
     }
 
 }

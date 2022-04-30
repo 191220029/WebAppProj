@@ -1,7 +1,8 @@
 function roleSkillHtmlGen(data, roleId) {
-    console.log(data);
+    //console.log(data);
     let roleSkillHtml =
-        " <div class = 'panel-heading'>属性</div>"
+        "<div class='panel panel-default'>"
+        + " <div class = 'panel-heading'>属性</div>"
         + "<div class='panel-body'>"
         + "<div class='table-responsive'>"
         + "<table class='table table-striped table-bordered table-hover'>"
@@ -1019,4 +1020,199 @@ function roleSkillHtmlGen(data, roleId) {
         + "</div> "
         + "</div>"
     $("#roleSkillTable").html(roleSkillHtml);
+
+    $("#roleSkillEditButton").click(function (e) {
+
+        let button = document.getElementById("roleSkillEditButton");
+        let inputs = document.getElementsByClassName("roleSkillContent");
+        //console.log(inputs);
+        if (button.innerText === "编辑") {
+            button.innerText = "确认修改";
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].classList.contains("changeable")) {
+                    //console.log(inputs[i].innerHTML);
+                    if (inputs[i].classList.contains("Integer")) {
+                        //console.log(inputs[i].innerText);
+                        inputs[i].innerHTML = "<input style=\"width:80px;\"  type='number' value='" + inputs[i].innerText + "' min='0'/>"
+                        //console.log(inputs[i].innerHTML);
+                    } else if (inputs[i].classList.contains("varchar")) {
+                        inputs[i].innerHTML = "<input style=\"width:80px;\" value='" + inputs[i].innerText + "'/>";
+                    }
+                }
+            }
+        } else {
+            button.innerText = "编辑";
+            let TypeName = [
+                "role_skill_accounting",
+                "role_skill_anthropology",
+                "role_skill_evaluation",
+                "role_skill_archaeology",
+                "role_skill_writing",
+                "role_skill_music_theory",
+                "role_skill_morris_dance",
+                "role_skill_opera_singing",
+                "role_skill_whitewasher_painter",
+                "role_skill_photography",
+                "role_skill_dance",
+                "role_skill_art",
+                "role_skill_forge",
+                "role_skill_pottery_making",
+                "role_skill_technical_drawing",
+                "role_skill_farming",
+                "role_skill_typing",
+                "role_skill_shorthand",
+                "role_skill_blown_glass_tube",
+                "role_skill_tailor",
+                "role_skill_make_wine",
+                "role_skill_fishing",
+                "role_skill_sculpture",
+                "role_skill_acrobatics",
+                "role_skill_seduce",
+                "role_skill_climb",
+                "role_skill_computer",
+                "role_skill_credit",
+                "role_skill_cthulhu_mythos",
+                "role_skill_disguise",
+                "role_skill_dodge",
+                "role_skill_car_driving",
+                "role_skill_electrical_maintenance",
+                "role_skill_electronics",
+                "role_skill_speech_skill",
+                "role_skill_combat_fight",
+                "role_skill_combat_whip",
+                "role_skill_combat_electric_saw",
+                "role_skill_combat_axe",
+                "role_skill_combat_sword",
+                "role_skill_combat_hinge",
+                "role_skill_combat_flail",
+                "role_skill_combat_spear",
+                "role_skill_shoot_pistol",
+                "role_skill_shoot_rifle_shotgun",
+                "role_skill_shoot_archery",
+                "role_skill_shoot_flame_thrower",
+                "role_skill_shoot_machine_gun",
+                "role_skill_shoot_heavy_weapon",
+                "role_skill_first_aid",
+                "role_skill_history",
+                "role_skill_threaten",
+                "role_skill_jump",
+                "role_skill_language_type1",
+                "role_skill_language_val1",
+                "role_skill_language_type2",
+                "role_skill_language_val2",
+                "role_skill_language_type3",
+                "role_skill_language_val3",
+                "role_skill_mother_tongue_type",
+                "role_skill_mother_tongue_val",
+                "role_skill_throw",
+                "role_skill_track",
+                "role_skill_law",
+                "role_skill_library_use",
+                "role_skill_listen",
+                "role_skill_locksmith",
+                "role_skill_mechanical_repair",
+                "role_skill_medicine",
+                "role_skill_natural_world",
+                "role_skill_navigate",
+                "role_skill_occult",
+                "role_skill_operate_heavy_machinery",
+                "role_skill_persuade",
+                "role_skill_drive_aircraft",
+                "role_skill_drive_ship",
+                "role_skill_psychoanalysis",
+                "role_skill_psychology",
+                "role_skill_ride",
+                "role_skill_science_geology",
+                "role_skill_science_chemistry",
+                "role_skill_science_biology",
+                "role_skill_science_math",
+                "role_skill_science_astronomy",
+                "role_skill_science_physics",
+                "role_skill_science_pharmacy",
+                "role_skill_science_botany",
+                "role_skill_science_zoology",
+                "role_skill_science_cryptography",
+                "role_skill_science_engineering",
+                "role_skill_science_meteorology",
+                "role_skill_science_judicial_science",
+                "role_skill_sleight_of_hand",
+                "role_skill_recon",
+                "role_skill_stealth",
+                "role_skill_survival",
+                "role_skill_swim",
+                "role_skill_beast_training",
+                "role_skill_diving",
+                "role_skill_demolition",
+                "role_skill_read_lips",
+                "role_skill_hypnosis",
+                "role_skill_artillery",
+                "role_skill_lore_type",
+                "role_skill_lore_val"
+            ];
+            let inputValue = [];
+            //console.log(inputs[0]);
+            let valueIndex = 0;
+            let typeIndex = 0;
+            for(let i = 0; i < inputs.length; i++){
+                // if(inputs[i].classList.contains("changeable"))
+                //     console.log(inputs[i]);
+                if(inputs[i].classList.contains("changeable")
+                && inputs[i].classList.contains("Integer")){
+                    inputValue[valueIndex] = TypeName[typeIndex] + "_" + "growth" + "=" + inputs[i].childNodes[0].value;
+                    valueIndex = valueIndex + 1;
+                    i = i + 1;
+                    inputValue[valueIndex] = TypeName[typeIndex] + "_" + "job" + "=" + inputs[i].childNodes[0].value;
+                    valueIndex = valueIndex + 1;
+                    i = i + 1;
+                    inputValue[valueIndex] = TypeName[typeIndex] + "_" + "interest" + "=" + inputs[i].childNodes[0].value;
+                    valueIndex = valueIndex + 1;
+                    typeIndex++;
+                }
+                else if(inputs[i].classList.contains("varchar")){
+                    inputValue[valueIndex] = TypeName[typeIndex] + "=" + inputs[i].childNodes[0].value;
+                    valueIndex = valueIndex + 1;
+                    typeIndex++;
+                }
+            }
+            //console.log(inputValue);
+            //console.log(url);
+            console.log(sessionStorage.getItem("roleId"));
+            $.ajax({
+                    type: "POST",
+                    url: "/roleSkill/modifyRoleSkillValue",
+                    data:
+                        "roleCardId=" + sessionStorage.getItem("roleId") +
+                        "&inputValue=" + JSON.stringify(inputValue),
+                    //dataType: "json",//数据响应格式
+                    success: function (data) {
+                        //console.log(data);
+                        if(data === "OK"){
+                            alert("修改成功!");
+                            location.reload();
+                        }
+                        else
+                            alert("服务器似乎出现了一点问题，稍后再试试吧");
+                    },
+                    error: function (data) {
+                        //console.log("Failed");
+                        alert("服务器似乎出现了一点问题，稍后再试试吧");
+                    }
+            })
+            //editorSubmit(url);
+        }
+    })
+
+}
+
+function editorSubmit(url) {
+    $.get(url, function (data, status) {
+        //console.log(url);
+        if(status==="success") {
+            window.alert(data);
+        }
+        else {
+            window.alert("寄，修改出错。刷重试也可能没用。")
+        }
+    })
+    location.reload();
 }

@@ -52,6 +52,7 @@ public class LogonController {
         else {
             session.setAttribute("loginUser", users.get(0).getUserName());
             session.setAttribute("UserId", users.get(0).getUserId());
+            session.setAttribute("photo", "/serverfs/img/usricon/default.jpg");
             return "OK";
         }
     }
