@@ -156,7 +156,7 @@
             +"<tbody>"
             +"<tr>"
             +"<th class='roleBaseInfoCol'>姓名</th>"
-            +"<th class='roleBaseInfoContent changeable varchar maxLength_40', id='th_roleName'><text>"+data.roleName+"</text></a></th>"
+            +"<th class='roleBaseInfoContent changeable varchar maxLength_40', id='th_roleName'><text>"+data.roleName+"</text></th>"
             +"</tr>"
             +"<tr>"
             +"<th class='roleBaseInfoCol'>玩家</th>"
@@ -334,7 +334,7 @@
                         //console.log(inputs[i].innerHTML);
                         if(inputs[i].classList.contains("Integer")){
                             //console.log(inputs[i].innerText);
-                            inputs[i].innerHTML="<input type='number' value='"+inputs[i].innerText+"' min='0', max='100'/>"
+                            inputs[i].innerHTML="<input type='number' value='"+inputs[i].innerText+"' min='0', max='100' step='5'/>"
                             //console.log(inputs[i].innerHTML);
                         }
                     }
