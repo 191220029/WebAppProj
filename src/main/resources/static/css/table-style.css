@@ -1,0 +1,32 @@
+.cell-head{
+
+}
+.cell-val{
+    font-family: 宋体!important;
+    font-size: large!important;
+    font-weight: normal!important;
+}
+
+.edit-button{
+    text-decoration-line: none!important;
+    color: #2b2b2b!important;
+    font-family: 微软雅黑!important;
+    margin-right: 20pt;
+    background-color: #bcddff;
+    padding: 2pt 10pt;
+}
+
+.cell-edit-button{
+    text-decoration-line: none!important;
+    color: #2b2b2b!important;
+    font-family: 宋体!important;
+    font-size: medium;
+    margin-right: 20pt;
+    background-color: #efefef;
+    padding: 2pt 10pt;
+}
+
+/*.roleInfoEditBut{*/
+/*    background-color: #d0e0f0;*/
+/*    padding: 2pt 10pt;*/
+/*}*/
