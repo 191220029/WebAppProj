@@ -60,4 +60,33 @@ public interface UserRepository extends JpaRepository<user, Integer> {
             @Param("loginTime") String loginTime,
             @Param("userId") Integer userId
     );
+
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE kesulu_online.user SET user_assignment = :userAssignment,user_email = :userEmail,user_gender = :userGender,user_name = :userName WHERE user_id = :userId")
+    void updateBaseInfo(
+            @Param("userAssignment") String userAssignment,
+            @Param("userEmail") String userEmail,
+            @Param("userGender") Integer userGender,
+            @Param("userName") String userName,
+            @Param("userId") Integer userId
+    );
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE kesulu_online.user SET user_icon_path = :iconPath WHERE user_id = :userId")
+    void updateImg(
+            @Param("iconPath") String iconPath,
+            @Param("userId") Integer userId
+    );
+
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE kesulu_online.user SET user_password = :password WHERE user_id = :userId")
+    void updatePassword(
+        @Param("password") String password,
+        @Param("userId") Integer userId
+    );
 }

@@ -2,7 +2,7 @@
 
 }
 .cell-val{
-    font-family: 宋体!important;
+    font-family: 楷体!important;
     font-size: large!important;
     font-weight: normal!important;
 }
@@ -19,8 +19,8 @@
 .cell-edit-button{
     text-decoration-line: none!important;
     color: #2b2b2b!important;
-    font-family: 宋体!important;
-    font-size: medium;
+    font-family: 楷体!important;
+    font-size: medium!important;
     margin-right: 20pt;
     background-color: #efefef;
     padding: 2pt 10pt;

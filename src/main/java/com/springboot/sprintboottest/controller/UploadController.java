@@ -1,19 +1,25 @@
 package com.springboot.sprintboottest.controller;
 
+import com.springboot.sprintboottest.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
 public class UploadController {
+    @Autowired
+    UserRepository userRepository;
     @RequestMapping("/user/uploadIcon")
     public String uploadUserIcon(HttpServletRequest request,
+                                 HttpSession session,
                                  @RequestParam("icon")MultipartFile icon)
             throws IOException {
         if(icon == null || icon.getSize() <= 0)
@@ -25,7 +31,8 @@ public class UploadController {
         Integer userId = Integer.parseInt(object.toString());
         //System.out.println(userId);
         InputStream inputStream = icon.getInputStream();
-        File f = new File(pathGenerate(userId, dir, icon.getOriginalFilename()));
+        String filePath = pathGenerate(userId, dir, icon.getOriginalFilename());
+        File f = new File(filePath);
         OutputStream outputStream = new FileOutputStream(f);
         //System.out.println(f.getPath());
         byte[] buffer = new byte[8192];
@@ -34,6 +41,8 @@ public class UploadController {
             outputStream.write(buffer, 0, bytesRead);
         }
         outputStream.close();
+        userRepository.updateImg(filePath.substring(filePath.indexOf("\\serverfs")), userId);
+        session.setAttribute("photo", filePath.substring(filePath.indexOf("\\serverfs")));
         return "TRUE";
     }
     private Boolean saveFile(InputStream inputStream){
@@ -43,7 +52,7 @@ public class UploadController {
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd-hh-mm-ss");
         //String suffix = new String(originPath.substring(originPath.lastIndexOf('.')));
-        String curPath = directory + userId.toString()+"_"+ft.format(date)+originPath;
+        String curPath = directory + userId.toString();//+"_"+ft.format(date)+originPath;
         return curPath;
     }
     private static void inputStreamToFile(InputStream ins, File file) {
