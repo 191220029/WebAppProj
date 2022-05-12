@@ -1,3 +1,4 @@
+
 function setRoleSkill() {
 
     let roleSkillCreateHtml =
@@ -578,9 +579,9 @@ function setRoleSkill() {
         +"<td class = 'roleSkillContent changeable Integer'><text> </text></td>"
         +"<td class = 'roleSkillContent changeable Integer'><input><text> </text></input></td>"
         +"<td class = 'roleSkillContent changeable Integer'><input><text> </text></input></td>"
-        +"<td class = 'roleSkillContent totalVal'><text>"+Math.floor(())+"</text></td>"
-        +"<td class = 'roleSkillContent halfVal'><text>"+Math.floor(()/2)+"</text></td>"
-        +"<td class = 'roleSkillContent quartVal'><text>"+Math.floor(()/5)+"</text></td>"
+        +"<td class = 'roleSkillContent totalVal'><text>"+Math.floor((0))+"</text></td>"
+        +"<td class = 'roleSkillContent halfVal'><text>"+Math.floor((0)/2)+"</text></td>"
+        +"<td class = 'roleSkillContent quartVal'><text>"+Math.floor((0)/5)+"</text></td>"
         +"</tr>"
         +"<tr><td class = 'roleJobSkillCol' id='role_skill_throw_job_flag'><text><text></td>"
         +"<td class = 'roleSkillCol' colspan='2'>投掷</td>"
@@ -1017,6 +1018,6 @@ function setRoleSkill() {
         + "</table>"
         + "</div>"
         + "</div>"
-        + "</div>"
+        + "</div>";
     $("#roleSkillCreateTable").html(roleSkillCreateHtml);
 }
