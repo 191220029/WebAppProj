@@ -13,8 +13,10 @@
     <link th:href="@{/css/basic.css}" rel="stylesheet" />
     <!--CUSTOM MAIN STYLES-->
     <link th:href="@{/css/custom.css}" rel="stylesheet" />
-    <!--My Role Table Styles-->
+    <!--Role Table Styles-->
     <link th:href="@{/css/role-table.css}" rel="stylesheet"/>
+    <!--Table Styles-->
+    <link th:href="@{/css/table-style.css}" rel="stylesheet"/>
     <!-- GOOGLE FONTS-->
     <!--
     <link th:href='@{https://fonts.useso.com/css?family=Open+Sans}' rel='stylesheet' type='text/css' />
@@ -55,6 +57,13 @@
                         <div id="roleSkillCreateTable"></div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div id="commitButtonDiv">
+                            <text class="edit-button" id="commitButton">提交</text>
+                        </div>
+                    </div>
+                </div>
                 <!-- /. ROW  -->
             </div>
             <!-- /. PAGE INNER  -->
@@ -87,6 +96,7 @@
 
     function setRoleBaseInfo(){
         let gender = "";
+        let userName = "[[${UserName}]]";
         let baseInfoTableHtml = "<div class=\"panel panel-default\">"
             +"<div class=\"panel-heading\">调查员信息</div>"
             +"<div class=\"panel-body\">"
@@ -99,7 +109,7 @@
             +"</tr>"
             +"<tr>"
             +"<th class='roleBaseInfoCol'>玩家</th>"
-            +"<th class='roleBaseInfoContent' id='th_userName'><input><text> </text></input></th>"
+            +"<th class='roleBaseInfoContent' id='th_userName'>"+userName+"</th>"
             +"<th class='roleBaseInfoCol Era'>年代</th>"
             +"<th class='roleBaseInfoContent changeable Era', id='th_era'><input list='Era_Datalist'><text> </text></input></th>"
             +"<datalist id='Era_Datalist'><option value='1920s'><option value='现代'><option value='自定义'></datalist>"
@@ -201,13 +211,13 @@
             +"</tr>"
             +"</tbody>"
             +"</table>"
-            +"<text class='roleInfoEditBut' id='roleElementEditButton'>随机数据</text>"
+            +"<text class='roleInfoEditBut' id='randomElement'>随机数据</text>"
             +"</div>"
             +"</div>"
             +"</div>";
         $("#roleElementTable").html(roleElementHtml)
 
-        $("#roleElementEditButton").click(function (e) {
+        $("#randomElement").click(function () {
             let element = document.getElementById("elementcount");
             let inputs = document.getElementsByClassName("roleElementContent changeable");
             var ele_number = new Array(10);
@@ -311,5 +321,85 @@
 
     }
 
+    $("#commitButton").click(function () {
+        /*提取调查员信息*/
+        let inputValue = [];
+        let TypeName = [
+            "role_card_player_id",
+            "role_name",
+            "era",
+            "role_job_id",
+            "role_age",
+            "role_gender",
+            "role_home_address",
+            "role_hometown",
+            "rolestr",
+            "roledex",
+            "rolecon",
+            "roleapp",
+            "rolesiz",
+            "roleint",
+            "rolepow",
+            "roleedu",
+            "rolemov",
+            "role_luck",
+            "role_cur_hit_points",
+            "role_max_hit_points",
+            "role_cur_sanity",
+            "role_max_sanity",
+            "role_cur_magic",
+            "role_max_magic",
+            "role_physical_status",
+            "role_mental_status"
+        ];
+
+        let baseInfos = document.getElementsByClassName("roleBaseInfoContent");
+        let j = 0;
+        inputValue[j] = TypeName[j] + "=" + [[${UserId}]];
+        j++;
+        for(let i = 0; i < baseInfos.length; i++){
+            if(baseInfos[i].classList.contains("changeable")){
+                //console.log(baseInfos[i].children[0].value);
+                inputValue[j] = TypeName[j] + "=" + baseInfos[i].children[0].value;
+                j++;
+            }
+        }
+
+        /*提取调查员属性信息*/
+        let elements = document.getElementsByClassName("roleElementContent");
+        for(let i = 0, k = 0; i < elements.length; i++){
+            if(elements[i].classList.contains("changeable")){
+                if(k===8){
+                    // console.log(elements[i]);
+                    // console.log(elements[i].children[0].textContent);
+                    inputValue[j] = TypeName[j] + "=" + elements[i].children[0].textContent
+                }
+                else {
+                    //console.log(elements[i].children[0].value);
+                    inputValue[j] = TypeName[j] + "=" + elements[i].children[0].value;
+                }
+                k++;
+                j++;
+            }
+        }
+
+        /*提取调查员状态信息*/
+        let states = document.getElementsByClassName("roleStatusContent");
+        for(let i = 0; i < states.length; i++){
+            if(i < 3){
+                //console.log(states[i].children[1].textContent);
+                inputValue[j] = TypeName[j] + "=" + states[i].children[0].value;
+                j++;
+                inputValue[j] = TypeName[j] + "=" + states[i].children[1].textContent;
+                j++;
+            }
+            else {
+                inputValue[j] = TypeName[j] + "=" + states[i].children[0].value;
+                j++;
+            }
+
+        }
+        console.log(inputValue);
+    })
 </script>
 </html>
