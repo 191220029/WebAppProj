@@ -2,7 +2,7 @@ function roleSkillHtmlGen(data, roleId) {
     //console.log(data);
     let roleSkillHtml =
         "<div class='panel panel-default'>"
-        +" <div class = 'panel-heading'>属性</div>"
+        +" <div class = 'panel-heading'>技能</div>"
         + "<div class='panel-body'>"
         + "<div class='table-responsive'>"
         + "<table class='table table-striped table-bordered table-hover'>"

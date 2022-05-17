@@ -116,9 +116,9 @@
             +"</tr>"
             +"<tr>"
             +"<th class='roleBaseInfoCol'>职业</th>"
-            +"<th class='roleBaseInfoContent', id='th_roleJobName'><input><text> </text></input></th>"
+            +"<th class='roleBaseInfoContent', id='th_roleJobName'><text></text></th>"
             +"<th class='roleBaseInfoCol'>职业序号</th>"
-            +"<th class='roleBaseInfoContent changeable Integer', id='th_roleJobId'><input><text> </text></input></th>"
+            +"<th class='roleBaseInfoContent changeable Integer', id='th_roleJobId'><input onchange = 'changeElement()'><text> </text></input></th>"
             +"</tr>"
             +"<tr>"
             +"<th class='roleBaseInfoCol'>年龄</th>"
@@ -135,6 +135,7 @@
             +"</tbody>"
             +"</table>"
             +"<text class='roleInfoEditBut' id='randomDataButton'>随机职业</text>"
+            +"<a style='margin-left: 20px' class='cell-edit-button' id='jobListBut' target='_blank' href='/jobs/jobTable'>查看职业列表</a>"
             +"</div>"
             +"</div>"
             +"</div>";
@@ -280,7 +281,8 @@
         let age = Number(ageEle.children[0].value);
         let move = 8;
         let str = Number(inputs[0].children[0].value),dex= Number(inputs[1].children[0].value),siz= Number(inputs[4].children[0].value);
-        let con = Number(inputs[2].children[0].value),pow =Number(inputs[6].children[0].value);
+        let con = Number(inputs[2].children[0].value),pow =Number(inputs[6].children[0].value), intel = Number(inputs[5].children[0].value);
+        let edu = Number(inputs[7].children[0].value),app=Number(inputs[3].children[0].value);
         let HP = Math.floor((siz+con)/10),MP=Math.floor(pow/5),SAN=pow;
 
         var count = 0;
@@ -319,6 +321,25 @@
         var luck = Number(inputs[9].children[0].value);
         element.innerHTML = "<div class=\"panel-heading\" id='element'>属性(合计:" +(count - luck)+ ")[含幸运:" +count+ "]</div>"
 
+        //更新职业
+        let jobId = document.getElementById("th_roleJobId").children[0].value;
+        if(jobId != "") {
+            $.ajax({
+                type: "POST",
+                url: "/jobs/findJobById",
+                datatype: "json",
+                data: "jobId=" + jobId,
+                success: function (data) {
+                    $("#th_roleJobName").html("<text>" + data.jobName + "</text>");
+                    updateSkillPoints(data, edu, dex, app, str, pow, intel);
+                },
+                error: function (data) {
+                    console.log(data)
+                    console.log("Failed");
+                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                }
+            })
+        }
     }
 
     $("#commitButton").click(function () {

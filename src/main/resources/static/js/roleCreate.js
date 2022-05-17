@@ -1021,3 +1021,36 @@ function setRoleSkill() {
         + "</div>";
     $("#roleSkillCreateTable").html(roleSkillCreateHtml);
 }
+
+/*
+    更新技能/兴趣点数。
+    参数列表：职业，教育，敏捷，外貌，力量，意志
+ */
+function updateSkillPoints(job, edu, dex, app, str, pow, intel){
+    $.ajax({
+        type: "POST",
+        url: "/jobs/calculateSkillPoints",
+        datatype:"json",
+        data:"formula="+job.skillPointFormula
+            +"&edu="+edu
+            +"&dex="+dex
+            +"&app="+app
+            +"&str="+str
+            +"&pow="+pow
+            +"&intel="+intel,
+        success: function (data) {
+            //console.log(data);
+            let jobSkillPoint = Number(String(data).substring(0, String(data).indexOf(",")));
+            let interestSkillPoint = Number(String(data).substring(String(data).indexOf(",") + 1));
+            console.log(jobSkillPoint);
+            console.log((interestSkillPoint));
+        },
+        error: function (data) {
+            console.log(data);
+            console.log("Failed");
+            alert("服务器似乎出现了一点问题，稍后再试试吧");
+        }
+    })
+
+    //return jobSkillPoint, interestSkillPoint;
+}
