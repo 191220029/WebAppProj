@@ -146,7 +146,8 @@
             let button = document.getElementById("randomDataButton");
             let inputs = document.getElementsByClassName("roleBaseInfoContent");
             //4  jobID
-            inputs[4].innerHTML = "<th class='roleBaseInfoContent changeable Integer', id='th_roleJobId'><input value='" + Math.floor(Math.random() * 100 + 1) + "'/></th>"
+            inputs[4].innerHTML = "<th class='roleBaseInfoContent changeable Integer', id='th_roleJobId'><input onchange = 'changeElement()' value='" + Math.floor(Math.random() * 100 + 1) + "'/></th>"
+            changeElement();
         })
 
 
@@ -332,6 +333,7 @@
                 success: function (data) {
                     $("#th_roleJobName").html("<text>" + data.jobName + "</text>");
                     updateSkillPoints(data, edu, dex, app, str, pow, intel);
+                    updateJobSkillMark(data);
                 },
                 error: function (data) {
                     console.log(data)

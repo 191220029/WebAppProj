@@ -47,15 +47,15 @@ public class JobsController {
         String[] formulas = Oformula.split("或");
         for(String formula : formulas){
             // 按"+"分项再求和
-            System.out.println("formula:"+formula);
+//            System.out.println("formula:"+formula);
             Integer sum = 0;
             String[] tokens = formula.split("＋");
             for(String token : tokens){
-                System.out.println("token:"+token);
+//                System.out.println("token:"+token);
                 String type;
                 Integer multiplier;
                 if(token.indexOf('×') < 0) {
-                    System.out.println("Using default multiplier 0");
+//                    System.out.println("Using default multiplier 0");
                     type = token;
                     multiplier = 1;
                 }
@@ -63,8 +63,8 @@ public class JobsController {
                     type = token.substring(0, token.indexOf('×')) ;
                     multiplier = Integer.parseInt(token.substring(token.indexOf('×') + 1));
                 }
-                System.out.println("type:"+type);
-                System.out.println("multiplier:" +multiplier);
+//                System.out.println("type:"+type);
+//                System.out.println("multiplier:" +multiplier);
                 switch(type){
                     case "教育": {
                         sum += multiplier * edu;
