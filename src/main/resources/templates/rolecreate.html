@@ -290,6 +290,7 @@
         let edu = Number(inputs[7].children[0].value),app=Number(inputs[3].children[0].value);
         let HP = Math.floor((siz+con)/10),MP=Math.floor(pow/5),SAN=pow;
 
+        console.log(language);
         language.innerHTML = "<td class = 'roleSkillContent initVal' id ='language'><text>" + edu + "</text></td>";
         dodge.innerHTML =  "<td class = 'roleSkillContent initVal' id ='dodge'><text>" + (dex/2) + "</text></td>";
 
@@ -544,7 +545,7 @@
             //     console.log(inputs[i]);
             if(inputs[i].classList.contains("changeable")
                 && inputs[i].classList.contains("Integer")){
-                inputValue[valueIndex] = TypeName[typeIndex] + "_" + "growth" + "=" + inputs[i].childNodes[0].value;
+                inputValue[valueIndex] = TypeName[typeIndex] + "_" + "growth" + "=" + inputs[i].childNodes[0].textContent;
                 valueIndex = valueIndex + 1;
                 i = i + 1;
                 inputValue[valueIndex] = TypeName[typeIndex] + "_" + "job" + "=" + inputs[i].childNodes[0].value;
@@ -562,6 +563,34 @@
         }
 
         console.log(inputValue);
+        $.ajax({
+            type: "POST",
+            url: "/rolecreate/create",
+            datatype:"json",
+            data:"roleCard="+JSON.stringify(inputValue),
+            success: function (data) {
+                //console.log(data);
+                if(data === "OK"){
+                    alert("修改成功!");
+                    location.reload();
+                }
+                else {
+                    alert("创建卡牌失败。错误信息如下：" + data);
+                    console.log(data);
+                }
+            },
+            error: function (data) {
+                if(data.statusText === "parsererror"){
+                    console.log(data);
+                    alert("修改成功!");
+                }
+                else {
+                    console.log(data)
+                    console.log("Failed");
+                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                }
+            }
+        })
     })
 </script>
 </html>

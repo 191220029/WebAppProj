@@ -60,11 +60,17 @@ public class RolesCreateController {
     ){
         Map<String, String> inputValues = new HashMap();
         for(String s : jsonValues){
-            Pair<String, String> item = new Pair<String, String>(s.substring(s.indexOf('\"') + 1, s.indexOf('=')),
+            String typeName = s.substring(s.indexOf('\"') + 1, s.indexOf('='));
+//            System.out.println(s);
+//            System.out.println(s.indexOf('=') + "," + s.length());
+            if(s.indexOf('=') >= s.length() - 2)
+                return typeName + " is null.";
+            Pair<String, String> item = new Pair<String, String>(typeName,
                     s.substring(s.indexOf('=') + 1, s.lastIndexOf('\"')));
             inputValues.put(item.getKey(), item.getValue());
         }
         System.out.println(inputValues);
+
         roleRepository.insertRoleBaseInfo(
                 Integer.parseInt(inputValues.get("role_card_player_id")),
                 inputValues.get("era"),

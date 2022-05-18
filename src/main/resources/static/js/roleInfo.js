@@ -1018,7 +1018,7 @@ function roleSkillHtmlGen(data, roleId) {
         + "<text class = 'roleInfoEditBut' id = 'roleSkillEditButton'> 编辑 </text>"
         + "</div>"
         + "</div> "
-        + "</div>";[]
+        + "</div>";
     $("#roleSkillTable").html(roleSkillHtml);
 
     $("#roleSkillEditButton").click(function (e) {
