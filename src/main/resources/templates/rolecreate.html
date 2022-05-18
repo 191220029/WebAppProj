@@ -275,6 +275,10 @@
     }
 
     function changeElement() {
+        let dodge = document.getElementById("dodge");
+        let language = document.getElementById("language");
+
+
         let element = document.getElementById("elementcount");
         let inputs = document.getElementsByClassName("roleElementContent changeable");
         let ageEle = document.getElementById("th_roleAge");
@@ -285,6 +289,9 @@
         let con = Number(inputs[2].children[0].value),pow =Number(inputs[6].children[0].value), intel = Number(inputs[5].children[0].value);
         let edu = Number(inputs[7].children[0].value),app=Number(inputs[3].children[0].value);
         let HP = Math.floor((siz+con)/10),MP=Math.floor(pow/5),SAN=pow;
+
+        language.innerHTML = "<td class = 'roleSkillContent initVal' id ='language'><text>" + edu + "</text></td>";
+        dodge.innerHTML =  "<td class = 'roleSkillContent initVal' id ='dodge'><text>" + (dex/2) + "</text></td>";
 
         var count = 0;
         for(let i = 0; i < 10; i++){
