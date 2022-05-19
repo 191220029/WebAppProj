@@ -1,17 +1,17 @@
 package com.springboot.sprintboottest.controller;
 
-import com.springboot.sprintboottest.Entity.role;
 import com.springboot.sprintboottest.Repository.RoleRepository;
+import jxl.Workbook;
+import jxl.write.WritableWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import com.springboot.sprintboottest.Entity.role;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.List;
+import java.io.*;
 
 @Controller
 public class RolesTableController {
@@ -38,6 +38,31 @@ public class RolesTableController {
         return "roleInfo";
     }
 
+    @Autowired
+    RoleRepository roleRepository;
+    @ResponseBody
+    @RequestMapping("/table/deleteRole")
+    public String deleteRoleController(
+            @RequestParam("ID") Integer ID
+    ){
+        roleRepository.deleteRoleById(ID);
+        return "OK";
+    }
 
+    @ResponseBody
+    @RequestMapping("/table/downloadCSV")
+    public String downloadRoleCSV(
+            @RequestParam("ID") Integer ID
+    ) throws IOException {
+        role r = roleRepository.findRole(ID);
+        String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\cards\\";
+        File xlsFile = new File(dir);
+        if(!xlsFile.exists())
+            xlsFile.mkdir();
+        xlsFile = new File(dir + ID.toString() + ".xls");
+        WritableWorkbook workbook = Workbook.createWorkbook(xlsFile);
+        workbook.createSheet("角色卡", 1);
+        return xlsFile.getPath().substring(xlsFile.getPath().indexOf("\\serverfs"));
+    }
 
 }

@@ -16,6 +16,7 @@
     <link th:href="@{/css/custom.css}" rel="stylesheet" />
     <!--My Role Table Styles-->
     <link th:href="@{/css/role-table.css}" rel="stylesheet"/>
+    <link th:href="@{/css/table-style.css}" rel="stylesheet"/>
 </head>
 <body>
 
@@ -30,7 +31,7 @@
                 <div class="col-md-12">
                     <h1 class="page-head-line">Info Table</h1>
                     <h1 class="page-subhead-line">在这里，你可以查看该角色卡的所有信息并修改其属性。 </h1>
-
+                    <text class="edit-button" id="downloadXLS">导出为xls文件</text>
                 </div>
             </div>
             <div class="row">
@@ -84,6 +85,28 @@
         getRoleBaseInfo(roleId);
         getRoleElemement(roleId);
         getRoleSkill(roleId);
+        $("#downloadXLS").click(function () {
+            //console.log(roleId);
+            $.ajax({
+                type: "POST",
+                url: "/table/downloadCSV",
+                datatype:"json",
+                data:"ID="+roleId,
+                success: function (data) {
+                    console.log(data);
+                    let link = document.createElement('a');
+                    link.style.display = 'none';
+                    link.href = data;
+                    link.setAttribute('download', roleId + ".xls");
+                    document.body.appendChild(link);
+                    link.click();
+                },
+                error: function (data) {
+                    console.log(data)
+                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                }
+            })
+        })
     })
 
 

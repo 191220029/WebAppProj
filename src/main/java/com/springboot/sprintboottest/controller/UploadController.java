@@ -26,12 +26,13 @@ public class UploadController {
             return "FALSE";
         //System.out.println(f.getPath());
         //inputStreamToFile(inputStream, f);
+        //String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\img\\usricon\\";
         String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\img\\usricon\\";
         Object object = request.getSession().getAttribute("UserId");
         Integer userId = Integer.parseInt(object.toString());
         //System.out.println(userId);
         InputStream inputStream = icon.getInputStream();
-        String filePath = pathGenerate(userId, dir, icon.getOriginalFilename());
+        String filePath = pathGenerate(userId, dir);
         File f = new File(filePath);
         OutputStream outputStream = new FileOutputStream(f);
         //System.out.println(f.getPath());
@@ -45,28 +46,11 @@ public class UploadController {
         session.setAttribute("photo", filePath.substring(filePath.indexOf("\\serverfs")));
         return "TRUE";
     }
-    private Boolean saveFile(InputStream inputStream){
-        return true;
-    }
-    private String pathGenerate(Integer userId,String directory, String originPath){
+    public static String pathGenerate(Integer userId,String directory){
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd-hh-mm-ss");
         //String suffix = new String(originPath.substring(originPath.lastIndexOf('.')));
         String curPath = directory + userId.toString();//+"_"+ft.format(date)+originPath;
         return curPath;
-    }
-    private static void inputStreamToFile(InputStream ins, File file) {
-        try {
-            OutputStream os = new FileOutputStream(file);
-            int bytesRead = 0;
-            byte[] buffer = new byte[8192];
-            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
-            os.close();
-            ins.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

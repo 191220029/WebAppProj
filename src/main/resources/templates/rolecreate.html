@@ -124,7 +124,11 @@
             +"<th class='roleBaseInfoCol'>年龄</th>"
             +"<th class='roleBaseInfoContent changeable Integer', id='th_roleAge'><input onchange = 'changeElement()'><text> </text></input></th>"
             +"<th class='roleBaseInfoCol'>性别</th>"
-            +"<th class='roleBaseInfoContent changeable Gender', id='th_gender'><input><text> </text></input></th>"
+            +"<th class='roleBaseInfoContent changeable Gender', id='th_gender'><select>"
+            +"<option>男</option>"
+            +"<option>女</option>"
+            +"<option selected = 'selected'>自定义</option>"
+            +"</select></th>"
             +"</tr>"
             +"<tr>"
             +"<th class='roleBaseInfoCol'>住地</th>"
@@ -290,7 +294,7 @@
         let edu = Number(inputs[7].children[0].value),app=Number(inputs[3].children[0].value);
         let HP = Math.floor((siz+con)/10),MP=Math.floor(pow/5),SAN=pow;
 
-        console.log(language);
+        //console.log(language);
         language.innerHTML = "<td class = 'roleSkillContent initVal' id ='language'><text>" + edu + "</text></td>";
         dodge.innerHTML =  "<td class = 'roleSkillContent initVal' id ='dodge'><text>" + (dex/2) + "</text></td>";
 
@@ -309,9 +313,9 @@
             if (inputs2[i].classList.contains("changeable")) {
                 if (inputs2[i].classList.contains("Integer")) {
                     if (inputs2[i].classList.contains("UpperBound")) {
-                        if(i==0) inputs2[i].innerHTML = "<th class='roleStatusContent changeable Integer UpperBound'><input type='number' value='" + HP + "' min='0', max='100'</input>/<text> " + HP + " </text></th>";
-                        if(i==1) inputs2[i].innerHTML = "<th class='roleStatusContent changeable Integer UpperBound'><input type='number' value='" + SAN + "' min='0', max='100'</input>/<text> " + SAN + " </text></th>";
-                        if(i==2) inputs2[i].innerHTML = "<th class='roleStatusContent changeable Integer UpperBound'><input type='number' value='" + MP + "' min='0', max='100'</input>/<text> " + MP + " </text></th>";
+                        if(i==0) inputs2[i].innerHTML = "<th class='roleStatusContent changeable Integer UpperBound'><input type='number' value='" + HP + "' min='0', max='100'</input>/<text>" + HP + "</text></th>";
+                        if(i==1) inputs2[i].innerHTML = "<th class='roleStatusContent changeable Integer UpperBound'><input type='number' value='" + SAN + "' min='0', max='100'</input>/<text>" + SAN + "</text></th>";
+                        if(i==2) inputs2[i].innerHTML = "<th class='roleStatusContent changeable Integer UpperBound'><input type='number' value='" + MP + "' min='0', max='100'</input>/<text>" + MP + "</text></th>";
                     }
                 }
             }
@@ -346,7 +350,7 @@
                 error: function (data) {
                     console.log(data)
                     console.log("Failed");
-                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                    alert("无效的职业ID.也可能是服务器似乎出现了一点问题，稍后再试试吧");
                 }
             })
         }
@@ -538,7 +542,7 @@
 
         /*提取技能点信息*/
         let inputs = document.getElementsByClassName("roleSkillContent");
-        let valueIndex = 0;
+        let valueIndex = inputValue.length;
         let typeIndex = j;
         for(let i = 0; i < inputs.length; i++){
             // if(inputs[i].classList.contains("changeable"))
@@ -571,11 +575,11 @@
             success: function (data) {
                 //console.log(data);
                 if(data === "OK"){
-                    alert("修改成功!");
-                    location.reload();
+                    alert("角色创建成功!");
+                    location.replace("/table");
                 }
                 else {
-                    alert("创建卡牌失败。错误信息如下：" + data);
+                    alert("创建卡牌失败。错误信息如下：\n" + data);
                     console.log(data);
                 }
             },

@@ -9,11 +9,7 @@ import com.springboot.sprintboottest.Repository.RoleElementRepository;
 import com.springboot.sprintboottest.Repository.RoleRepository;
 import com.springboot.sprintboottest.Repository.RoleSkillRepository;
 import javafx.util.Pair;
-import org.apache.catalina.Role;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;

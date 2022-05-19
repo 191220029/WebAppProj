@@ -111,4 +111,11 @@ public interface RoleRepository extends JpaRepository<role, Integer> {
             @Param("_role_mental_status")String _role_mental_status
     );
 
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "DELETE FROM kesulu_online.rolecard WHERE role_card_id =:ID")
+    void deleteRoleById(
+            @Param("ID") Integer ID
+    );
+
 }

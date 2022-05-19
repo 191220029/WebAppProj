@@ -65,11 +65,24 @@ public class RolesCreateController {
 //            System.out.println(s.indexOf('=') + "," + s.length());
             if(s.indexOf('=') >= s.length() - 2)
                 return typeName + " is null.";
+            String val = s.substring(s.indexOf('=') + 1, s.lastIndexOf('\"'));
+            if(val.equals("undefined"))
+                return typeName + "'s val  is not valid.";
+
+            // Gender -> Integer
+            if(typeName.equals("role_gender")){
+                if(val.equals("男"))
+                    val = "1";
+                else if(val.equals("女"))
+                    val = "0";
+                else
+                    val = "2";
+            }
             Pair<String, String> item = new Pair<String, String>(typeName,
-                    s.substring(s.indexOf('=') + 1, s.lastIndexOf('\"')));
+                    val);
             inputValues.put(item.getKey(), item.getValue());
         }
-        System.out.println(inputValues);
+//        System.out.println(inputValues);
 
         roleRepository.insertRoleBaseInfo(
                 Integer.parseInt(inputValues.get("role_card_player_id")),
@@ -422,6 +435,8 @@ public class RolesCreateController {
                 inputValues.get("role_skill_lore_type"),
                 rcId
         );
+
+
         return "OK";
     }
 }

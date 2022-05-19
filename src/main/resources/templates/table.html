@@ -362,6 +362,8 @@
                         +"<tr>"
                             +"<th class='roleBaseInfoCol'>姓名</th>"
                             +"<th class='roleBaseInfoContent'>"+data[i].roleName+"</th>"
+                            +"<th class='roleBaseInfoCol'>角色ID</th>"
+                            +"<th class='roleBaseInfoContent'>"+data[i].roleCardId+"</th>"
                         +"</tr>"
                         +"<tr>"
                             +"<th class='roleBaseInfoCol'>玩家</th>"
@@ -386,7 +388,7 @@
                     +"</div>"
                         +"<div class='RBIeditorPanel'>"
                         +"<a class='RBIeditorButton fullInfoButton' name='roleInfo_"+data[i].roleCardId+"'>查看全部信息/编辑</a>"
-                        +"<a class='RBIeditorButton deleteButton'>删除该角色卡</a>"
+                        +"<a class='RBIeditorButton deleteButton' name='roleInfo_"+data[i].roleCardId+"'>删除该角色卡</a>"
                         +"</div>"
                     +"</div>"
                     +"</div>";
@@ -400,6 +402,31 @@
                     //console.log(roleId);
                     sessionStorage.setItem("roleId", roleId);
                     window.location.replace("/table/roleInfo");
+                })
+
+                $(".deleteButton").click(function (e) {
+                    let roleId = e.currentTarget.name.substring(9);
+                    // console.log(roleId);
+                    if(confirm("确认要删除ID为" + roleId + "的角色卡？")){
+                        $.ajax({
+                            type: "POST",
+                            url: "/table/deleteRole",
+                            datatype: "json",
+                            data: "ID=" + roleId,
+                            success: function (data) {
+                                if(data === "OK") {
+                                    alert("ID为" + roleId + "的角色卡成功被删除.");
+                                    window.location.reload();
+                                }
+                                else
+                                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                            },
+                            error: function (data) {
+                                console.log(data);
+                                alert("服务器似乎出现了一点问题，稍后再试试吧");
+                            }
+                        })
+                    }
                 })
             }
             else{
