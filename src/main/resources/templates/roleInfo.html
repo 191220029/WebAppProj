@@ -152,10 +152,10 @@
     function baseInfoHtmlGen(data, roleId) {
         let gender = "";
         if(data.roleGender===1)
-            gender = "♂";
+            gender = "男";
         else if(data.roleGender===0)
-            gender = "♀";
-        else gender = "其他";
+            gender = "女";
+        else gender = "自定义";
         let baseInfoHtml = "<div class=\"panel panel-default\">"
             +"<div class=\"panel-heading\">调查员信息</div>"
             +"<div class=\"panel-body\">"
@@ -227,8 +227,8 @@
                         else if(inputs[i].classList.contains("Gender")){
                             inputs[i].innerHTML="<input list='Gender_Datalist' id='GenderInput' value='"+inputs[i].innerText+"'/>" +
                                 "<datalist id='Gender_Datalist'>" +
-                                "<option value='♂'>" +
-                                "<option value='♀'>" +
+                                "<option value='男'>" +
+                                "<option value='女'>" +
                                 "<option value='自定义'>" +
                                 "</datalist>";
                         }
@@ -252,9 +252,9 @@
                 //console.log(HomeAddress);
                 //console.log(Hometown);
 
-                if(Gender==="♂")
+                if(Gender==="男")
                     Gender=1;
-                else if(Gender==="♀")
+                else if(Gender==="女")
                     Gender=0;
                 else Gender=2;
                 //console.log(Gender);

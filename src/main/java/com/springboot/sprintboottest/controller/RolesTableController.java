@@ -1,8 +1,13 @@
 package com.springboot.sprintboottest.controller;
 
+import com.springboot.sprintboottest.Entity.roleBaseInfo;
+import com.springboot.sprintboottest.Entity.roleElement;
+import com.springboot.sprintboottest.Entity.user;
+import com.springboot.sprintboottest.Repository.RoleBaseInfoRepository;
+import com.springboot.sprintboottest.Repository.RoleElementRepository;
 import com.springboot.sprintboottest.Repository.RoleRepository;
-import jxl.Workbook;
-import jxl.write.WritableWorkbook;
+import com.springboot.sprintboottest.Repository.UserRepository;
+import jxl.write.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +45,12 @@ public class RolesTableController {
 
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    RoleBaseInfoRepository roleBaseInfoRepository;
+    @Autowired
+    RoleElementRepository roleElementRepository;
     @ResponseBody
     @RequestMapping("/table/deleteRole")
     public String deleteRoleController(
@@ -53,16 +64,17 @@ public class RolesTableController {
     @RequestMapping("/table/downloadCSV")
     public String downloadRoleCSV(
             @RequestParam("ID") Integer ID
-    ) throws IOException {
+    )throws IOException, WriteException {
         role r = roleRepository.findRole(ID);
+        roleBaseInfo rbi = roleBaseInfoRepository.findRolebaseinfo_id(r.getRoleCardId());
+        roleElement re = roleElementRepository.findRoleElement_id(r.getRoleCardId());
+//        System.out.println(ID);
+//        System.out.println(r.toString());
+//        System.out.println(r.getRoleCardPlayerId());
+        user u = userRepository.findByUserId(1);
+//        System.out.println(u.toString());
         String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\cards\\";
-        File xlsFile = new File(dir);
-        if(!xlsFile.exists())
-            xlsFile.mkdir();
-        xlsFile = new File(dir + ID.toString() + ".xls");
-        WritableWorkbook workbook = Workbook.createWorkbook(xlsFile);
-        workbook.createSheet("角色卡", 1);
-        return xlsFile.getPath().substring(xlsFile.getPath().indexOf("\\serverfs"));
+        return XLSWriter.cardToXLS(r, u, rbi, re, dir);
     }
 
 }

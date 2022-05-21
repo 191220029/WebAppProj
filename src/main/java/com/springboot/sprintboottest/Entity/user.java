@@ -9,6 +9,25 @@ import java.sql.Date;
 @Entity
 @Table(name = "user")
 public class user {
+    @Override
+    public String toString() {
+        return "user{" +
+                "UserId=" + UserId +
+                ", UserName='" + UserName + '\'' +
+                ", UserPassword='" + UserPassword + '\'' +
+                ", UserGender=" + UserGender +
+                ", UserPrivilegeLevel=" + UserPrivilegeLevel +
+                ", UserAssignment='" + UserAssignment + '\'' +
+                ", UserLevel=" + UserLevel +
+                ", UserExp=" + UserExp +
+                ", UserEmail='" + UserEmail + '\'' +
+                ", UserIconPath='" + UserIconPath + '\'' +
+                ", UserRegistoryTime=" + UserRegistoryTime +
+                ", UserLastLoginTime=" + UserLastLoginTime +
+                ", UserStatus=" + UserStatus +
+                '}';
+    }
+
     @Id
     @Column(name = "UserId")
     private Integer UserId;
@@ -45,9 +64,6 @@ public class user {
     private Date UserLastLoginTime;
     @Column(name = "UserStatus")
     private Integer UserStatus;
-
-    public user() {
-    }
 
     public Integer getUserId() {
         return UserId;
@@ -145,21 +161,4 @@ public class user {
         UserStatus = userStatus;
     }
 
-    @Override
-    public String toString() {
-        return "user{" +
-                "UserId=" + UserId +
-                ", UserPassword='" + UserPassword + '\'' +
-                ", UserGender=" + UserGender +
-                ", UserPrivilegeLevel=" + UserPrivilegeLevel +
-                ", UserAssignment='" + UserAssignment + '\'' +
-                ", UserLevel=" + UserLevel +
-                ", UserExp=" + UserExp +
-                ", UserEmail='" + UserEmail + '\'' +
-                ", UserIconPath='" + UserIconPath + '\'' +
-                ", UserRegistoryTime=" + UserRegistoryTime +
-                ", UserLastLoginTime=" + UserLastLoginTime +
-                ", UserStatus=" + UserStatus +
-                '}';
-    }
 }

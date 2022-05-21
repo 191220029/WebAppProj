@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "rolecard")
@@ -3338,11 +3340,556 @@ public class role {
         this.role_skill_lore_val_job = role_skill_lore_val_job;
     }
 
+    @Override
+    public String toString() {
+        return "role{" +
+                "RoleCardId=" + RoleCardId +
+                ", RoleCardPlayerId=" + RoleCardPlayerId +
+                ", Era='" + Era + '\'' +
+                ", RoleName='" + RoleName + '\'' +
+                ", RoleGender=" + RoleGender +
+                ", RoleAge=" + RoleAge +
+                ", RoleHomeAddress='" + RoleHomeAddress + '\'' +
+                ", RoleJobId=" + RoleJobId +
+                ", RoleHometown='" + RoleHometown + '\'' +
+                ", RoleSTR=" + RoleSTR +
+                ", RoleCON=" + RoleCON +
+                ", RoleSIZ=" + RoleSIZ +
+                ", RoleDEX=" + RoleDEX +
+                ", RoleAPP=" + RoleAPP +
+                ", RoleINT=" + RoleINT +
+                ", RolePOW=" + RolePOW +
+                ", RoleEDU=" + RoleEDU +
+                ", RoleMOV=" + RoleMOV +
+                ", RoleImgPath='" + RoleImgPath + '\'' +
+                ", RoleCurHitPoints=" + RoleCurHitPoints +
+                ", RoleMaxHitPoints=" + RoleMaxHitPoints +
+                ", RoleCurSanity=" + RoleCurSanity +
+                ", RoleMaxSanity=" + RoleMaxSanity +
+                ", RoleLuck=" + RoleLuck +
+                ", RoleCurMagic=" + RoleCurMagic +
+                ", RoleMaxMagic=" + RoleMaxMagic +
+                ", RolePhysicalStatus='" + RolePhysicalStatus + '\'' +
+                ", RoleMentalStatus='" + RoleMentalStatus + '\'' +
+                ", role_skill_accounting_growth=" + role_skill_accounting_growth +
+                ", role_skill_accounting_job=" + role_skill_accounting_job +
+                ", role_skill_accounting_interst=" + role_skill_accounting_interst +
+                ", role_skill_anthropology_growth=" + role_skill_anthropology_growth +
+                ", role_skill_anthropology_job=" + role_skill_anthropology_job +
+                ", role_skill_anthropology_interst=" + role_skill_anthropology_interst +
+                ", role_skill_evaluation_growth=" + role_skill_evaluation_growth +
+                ", role_skill_evaluation_job=" + role_skill_evaluation_job +
+                ", role_skill_evaluation_interst=" + role_skill_evaluation_interst +
+                ", role_skill_archaeology_growth=" + role_skill_archaeology_growth +
+                ", role_skill_archaeology_job=" + role_skill_archaeology_job +
+                ", role_skill_archaeology_interst=" + role_skill_archaeology_interst +
+                ", role_skill_writing_growth=" + role_skill_writing_growth +
+                ", role_skill_writing_job=" + role_skill_writing_job +
+                ", role_skill_writing_interst=" + role_skill_writing_interst +
+                ", role_skill_music_theory_growth=" + role_skill_music_theory_growth +
+                ", role_skill_music_theory_job=" + role_skill_music_theory_job +
+                ", role_skill_music_theory_interst=" + role_skill_music_theory_interst +
+                ", role_skill_morris_dance_growth=" + role_skill_morris_dance_growth +
+                ", role_skill_morris_dance_job=" + role_skill_morris_dance_job +
+                ", role_skill_morris_dance_interst=" + role_skill_morris_dance_interst +
+                ", role_skill_opera_singing_growth=" + role_skill_opera_singing_growth +
+                ", role_skill_opera_singing_job=" + role_skill_opera_singing_job +
+                ", role_skill_opera_singing_interst=" + role_skill_opera_singing_interst +
+                ", role_skill_whitewasher_painter_growth=" + role_skill_whitewasher_painter_growth +
+                ", role_skill_whitewasher_painter_job=" + role_skill_whitewasher_painter_job +
+                ", role_skill_whitewasher_painter_interst=" + role_skill_whitewasher_painter_interst +
+                ", role_skill_photography_growth=" + role_skill_photography_growth +
+                ", role_skill_photography_job=" + role_skill_photography_job +
+                ", role_skill_photography_interst=" + role_skill_photography_interst +
+                ", role_skill_dance_growth=" + role_skill_dance_growth +
+                ", role_skill_dance_job=" + role_skill_dance_job +
+                ", role_skill_dance_interst=" + role_skill_dance_interst +
+                ", role_skill_art_growth=" + role_skill_art_growth +
+                ", role_skill_art_job=" + role_skill_art_job +
+                ", role_skill_art_interst=" + role_skill_art_interst +
+                ", role_skill_forge_growth=" + role_skill_forge_growth +
+                ", role_skill_forge_job=" + role_skill_forge_job +
+                ", role_skill_forge_interst=" + role_skill_forge_interst +
+                ", role_skill_pottery_making_growth=" + role_skill_pottery_making_growth +
+                ", role_skill_pottery_making_job=" + role_skill_pottery_making_job +
+                ", role_skill_pottery_making_interst=" + role_skill_pottery_making_interst +
+                ", role_skill_technical_drawing_growth=" + role_skill_technical_drawing_growth +
+                ", role_skill_technical_drawing_job=" + role_skill_technical_drawing_job +
+                ", role_skill_technical_drawing_interst=" + role_skill_technical_drawing_interst +
+                ", role_skill_farming_growth=" + role_skill_farming_growth +
+                ", role_skill_farming_job=" + role_skill_farming_job +
+                ", role_skill_farming_interst=" + role_skill_farming_interst +
+                ", role_skill_typing_growth=" + role_skill_typing_growth +
+                ", role_skill_typing_job=" + role_skill_typing_job +
+                ", role_skill_typing_interst=" + role_skill_typing_interst +
+                ", role_skill_shorthand_growth=" + role_skill_shorthand_growth +
+                ", role_skill_shorthand_job=" + role_skill_shorthand_job +
+                ", role_skill_shorthand_interst=" + role_skill_shorthand_interst +
+                ", role_skill_blown_glass_tube_growth=" + role_skill_blown_glass_tube_growth +
+                ", role_skill_blown_glass_tube_job=" + role_skill_blown_glass_tube_job +
+                ", role_skill_blown_glass_tube_interst=" + role_skill_blown_glass_tube_interst +
+                ", role_skill_tailor_growth=" + role_skill_tailor_growth +
+                ", role_skill_tailor_job=" + role_skill_tailor_job +
+                ", role_skill_tailor_interst=" + role_skill_tailor_interst +
+                ", role_skill_make_wine_growth=" + role_skill_make_wine_growth +
+                ", role_skill_make_wine_job=" + role_skill_make_wine_job +
+                ", role_skill_make_wine_interst=" + role_skill_make_wine_interst +
+                ", role_skill_fishing_growth=" + role_skill_fishing_growth +
+                ", role_skill_fishing_job=" + role_skill_fishing_job +
+                ", role_skill_fishing_interst=" + role_skill_fishing_interst +
+                ", role_skill_sculpture_growth=" + role_skill_sculpture_growth +
+                ", role_skill_sculpture_job=" + role_skill_sculpture_job +
+                ", role_skill_sculpture_interst=" + role_skill_sculpture_interst +
+                ", role_skill_acrobatics_growth=" + role_skill_acrobatics_growth +
+                ", role_skill_acrobatics_job=" + role_skill_acrobatics_job +
+                ", role_skill_acrobatics_interst=" + role_skill_acrobatics_interst +
+                ", role_skill_seduce_growth=" + role_skill_seduce_growth +
+                ", role_skill_seduce_job=" + role_skill_seduce_job +
+                ", role_skill_seduce_interst=" + role_skill_seduce_interst +
+                ", role_skill_climb_growth=" + role_skill_climb_growth +
+                ", role_skill_climb_job=" + role_skill_climb_job +
+                ", role_skill_climb_interst=" + role_skill_climb_interst +
+                ", role_skill_computer_growth=" + role_skill_computer_growth +
+                ", role_skill_computer_job=" + role_skill_computer_job +
+                ", role_skill_computer_interst=" + role_skill_computer_interst +
+                ", role_skill_credit_growth=" + role_skill_credit_growth +
+                ", role_skill_credit_job=" + role_skill_credit_job +
+                ", role_skill_credit_interst=" + role_skill_credit_interst +
+                ", role_skill_cthulhu_mythos_growth=" + role_skill_cthulhu_mythos_growth +
+                ", role_skill_cthulhu_mythos_job=" + role_skill_cthulhu_mythos_job +
+                ", role_skill_cthulhu_mythos_interst=" + role_skill_cthulhu_mythos_interst +
+                ", role_skill_disguise_growth=" + role_skill_disguise_growth +
+                ", role_skill_disguise_job=" + role_skill_disguise_job +
+                ", role_skill_disguise_interst=" + role_skill_disguise_interst +
+                ", role_skill_dodge_growth=" + role_skill_dodge_growth +
+                ", role_skill_dodge_job=" + role_skill_dodge_job +
+                ", role_skill_dodge_interst=" + role_skill_dodge_interst +
+                ", role_skill_car_driving_growth=" + role_skill_car_driving_growth +
+                ", role_skill_car_driving_job=" + role_skill_car_driving_job +
+                ", role_skill_car_driving_interst=" + role_skill_car_driving_interst +
+                ", role_skill_electrical_maintenance_growth=" + role_skill_electrical_maintenance_growth +
+                ", role_skill_electrical_maintenance_job=" + role_skill_electrical_maintenance_job +
+                ", role_skill_electrical_maintenance_interst=" + role_skill_electrical_maintenance_interst +
+                ", role_skill_electronics_growth=" + role_skill_electronics_growth +
+                ", role_skill_electronics_job=" + role_skill_electronics_job +
+                ", role_skill_electronics_interst=" + role_skill_electronics_interst +
+                ", role_skill_speech_skill_growth=" + role_skill_speech_skill_growth +
+                ", role_skill_speech_skill_job=" + role_skill_speech_skill_job +
+                ", role_skill_speech_skill_interst=" + role_skill_speech_skill_interst +
+                ", role_skill_combat_fight_growth=" + role_skill_combat_fight_growth +
+                ", role_skill_combat_fight_job=" + role_skill_combat_fight_job +
+                ", role_skill_combat_fight_interst=" + role_skill_combat_fight_interst +
+                ", role_skill_combat_whip_growth=" + role_skill_combat_whip_growth +
+                ", role_skill_combat_whip_job=" + role_skill_combat_whip_job +
+                ", role_skill_combat_whip_interst=" + role_skill_combat_whip_interst +
+                ", role_skill_combat_electric_saw_growth=" + role_skill_combat_electric_saw_growth +
+                ", role_skill_combat_electric_saw_job=" + role_skill_combat_electric_saw_job +
+                ", role_skill_combat_electric_saw_interst=" + role_skill_combat_electric_saw_interst +
+                ", role_skill_combat_axe_growth=" + role_skill_combat_axe_growth +
+                ", role_skill_combat_axe_job=" + role_skill_combat_axe_job +
+                ", role_skill_combat_axe_interst=" + role_skill_combat_axe_interst +
+                ", role_skill_combat_sword_growth=" + role_skill_combat_sword_growth +
+                ", role_skill_combat_sword_job=" + role_skill_combat_sword_job +
+                ", role_skill_combat_sword_interst=" + role_skill_combat_sword_interst +
+                ", role_skill_combat_hinge_growth=" + role_skill_combat_hinge_growth +
+                ", role_skill_combat_hinge_job=" + role_skill_combat_hinge_job +
+                ", role_skill_combat_hinge_interst=" + role_skill_combat_hinge_interst +
+                ", role_skill_combat_flail_growth=" + role_skill_combat_flail_growth +
+                ", role_skill_combat_flail_job=" + role_skill_combat_flail_job +
+                ", role_skill_combat_flail_interst=" + role_skill_combat_flail_interst +
+                ", role_skill_combat_spear_growth=" + role_skill_combat_spear_growth +
+                ", role_skill_combat_spear_job=" + role_skill_combat_spear_job +
+                ", role_skill_combat_spear_interst=" + role_skill_combat_spear_interst +
+                ", role_skill_shoot_pistol_growth=" + role_skill_shoot_pistol_growth +
+                ", role_skill_shoot_pistol_job=" + role_skill_shoot_pistol_job +
+                ", role_skill_shoot_pistol_interst=" + role_skill_shoot_pistol_interst +
+                ", role_skill_shoot_rifle_shotgun_growth=" + role_skill_shoot_rifle_shotgun_growth +
+                ", role_skill_shoot_rifle_shotgun_job=" + role_skill_shoot_rifle_shotgun_job +
+                ", role_skill_shoot_rifle_shotgun_interst=" + role_skill_shoot_rifle_shotgun_interst +
+                ", role_skill_shoot_archery_growth=" + role_skill_shoot_archery_growth +
+                ", role_skill_shoot_archery_job=" + role_skill_shoot_archery_job +
+                ", role_skill_shoot_archery_interst=" + role_skill_shoot_archery_interst +
+                ", role_skill_shoot_flame_thrower_growth=" + role_skill_shoot_flame_thrower_growth +
+                ", role_skill_shoot_flame_thrower_job=" + role_skill_shoot_flame_thrower_job +
+                ", role_skill_shoot_flame_thrower_interst=" + role_skill_shoot_flame_thrower_interst +
+                ", role_skill_shoot_machine_gun_growth=" + role_skill_shoot_machine_gun_growth +
+                ", role_skill_shoot_machine_gun_job=" + role_skill_shoot_machine_gun_job +
+                ", role_skill_shoot_machine_gun_interst=" + role_skill_shoot_machine_gun_interst +
+                ", role_skill_shoot_heavy_weapon_growth=" + role_skill_shoot_heavy_weapon_growth +
+                ", role_skill_shoot_heavy_weapon_job=" + role_skill_shoot_heavy_weapon_job +
+                ", role_skill_shoot_heavy_weapon_interst=" + role_skill_shoot_heavy_weapon_interst +
+                ", role_skill_first_aid_growth=" + role_skill_first_aid_growth +
+                ", role_skill_first_aid_job=" + role_skill_first_aid_job +
+                ", role_skill_first_aid_interst=" + role_skill_first_aid_interst +
+                ", role_skill_history_growth=" + role_skill_history_growth +
+                ", role_skill_history_job=" + role_skill_history_job +
+                ", role_skill_history_interst=" + role_skill_history_interst +
+                ", role_skill_threaten_growth=" + role_skill_threaten_growth +
+                ", role_skill_threaten_job=" + role_skill_threaten_job +
+                ", role_skill_threaten_interst=" + role_skill_threaten_interst +
+                ", role_skill_jump_growth=" + role_skill_jump_growth +
+                ", role_skill_jump_job=" + role_skill_jump_job +
+                ", role_skill_jump_interst=" + role_skill_jump_interst +
+                ", role_skill_language_type1='" + role_skill_language_type1 + '\'' +
+                ", role_skill_language_val1_growth=" + role_skill_language_val1_growth +
+                ", role_skill_language_val1_job=" + role_skill_language_val1_job +
+                ", role_skill_language_val1_interst=" + role_skill_language_val1_interst +
+                ", role_skill_language_type2='" + role_skill_language_type2 + '\'' +
+                ", role_skill_language_val2_growth=" + role_skill_language_val2_growth +
+                ", role_skill_language_val2_job=" + role_skill_language_val2_job +
+                ", role_skill_language_val2_interst=" + role_skill_language_val2_interst +
+                ", role_skill_language_type3='" + role_skill_language_type3 + '\'' +
+                ", role_skill_language_val3_growth=" + role_skill_language_val3_growth +
+                ", role_skill_language_val3_job=" + role_skill_language_val3_job +
+                ", role_skill_language_val3_interst=" + role_skill_language_val3_interst +
+                ", role_skill_mother_tongue_type='" + role_skill_mother_tongue_type + '\'' +
+                ", role_skill_mother_tongue_val_growth=" + role_skill_mother_tongue_val_growth +
+                ", role_skill_mother_tongue_val_job=" + role_skill_mother_tongue_val_job +
+                ", role_skill_mother_tongue_val_interst=" + role_skill_mother_tongue_val_interst +
+                ", role_skill_throw_growth=" + role_skill_throw_growth +
+                ", role_skill_throw_job=" + role_skill_throw_job +
+                ", role_skill_throw_interst=" + role_skill_throw_interst +
+                ", role_skill_track_growth=" + role_skill_track_growth +
+                ", role_skill_track_job=" + role_skill_track_job +
+                ", role_skill_track_interst=" + role_skill_track_interst +
+                ", role_skill_law_growth=" + role_skill_law_growth +
+                ", role_skill_law_job=" + role_skill_law_job +
+                ", role_skill_law_interst=" + role_skill_law_interst +
+                ", role_skill_library_use_growth=" + role_skill_library_use_growth +
+                ", role_skill_library_use_job=" + role_skill_library_use_job +
+                ", role_skill_library_use_interst=" + role_skill_library_use_interst +
+                ", role_skill_listen_growth=" + role_skill_listen_growth +
+                ", role_skill_listen_job=" + role_skill_listen_job +
+                ", role_skill_listen_interst=" + role_skill_listen_interst +
+                ", role_skill_locksmith_growth=" + role_skill_locksmith_growth +
+                ", role_skill_locksmith_job=" + role_skill_locksmith_job +
+                ", role_skill_locksmith_interst=" + role_skill_locksmith_interst +
+                ", role_skill_mechanical_repair_growth=" + role_skill_mechanical_repair_growth +
+                ", role_skill_mechanical_repair_job=" + role_skill_mechanical_repair_job +
+                ", role_skill_mechanical_repair_interst=" + role_skill_mechanical_repair_interst +
+                ", role_skill_medicine_growth=" + role_skill_medicine_growth +
+                ", role_skill_medicine_job=" + role_skill_medicine_job +
+                ", role_skill_medicine_interst=" + role_skill_medicine_interst +
+                ", role_skill_natural_world_growth=" + role_skill_natural_world_growth +
+                ", role_skill_natural_world_job=" + role_skill_natural_world_job +
+                ", role_skill_natural_world_interst=" + role_skill_natural_world_interst +
+                ", role_skill_navigate_growth=" + role_skill_navigate_growth +
+                ", role_skill_navigate_job=" + role_skill_navigate_job +
+                ", role_skill_navigate_interst=" + role_skill_navigate_interst +
+                ", role_skill_occult_growth=" + role_skill_occult_growth +
+                ", role_skill_occult_job=" + role_skill_occult_job +
+                ", role_skill_occult_interst=" + role_skill_occult_interst +
+                ", role_skill_operate_heavy_machinery_growth=" + role_skill_operate_heavy_machinery_growth +
+                ", role_skill_operate_heavy_machinery_job=" + role_skill_operate_heavy_machinery_job +
+                ", role_skill_operate_heavy_machinery_interst=" + role_skill_operate_heavy_machinery_interst +
+                ", role_skill_persuade_growth=" + role_skill_persuade_growth +
+                ", role_skill_persuade_job=" + role_skill_persuade_job +
+                ", role_skill_persuade_interst=" + role_skill_persuade_interst +
+                ", role_skill_drive_aircraft_growth=" + role_skill_drive_aircraft_growth +
+                ", role_skill_drive_aircraft_job=" + role_skill_drive_aircraft_job +
+                ", role_skill_drive_aircraft_interst=" + role_skill_drive_aircraft_interst +
+                ", role_skill_drive_ship_growth=" + role_skill_drive_ship_growth +
+                ", role_skill_drive_ship_job=" + role_skill_drive_ship_job +
+                ", role_skill_drive_ship_interst=" + role_skill_drive_ship_interst +
+                ", role_skill_psychoanalysis_growth=" + role_skill_psychoanalysis_growth +
+                ", role_skill_psychoanalysis_job=" + role_skill_psychoanalysis_job +
+                ", role_skill_psychoanalysis_interst=" + role_skill_psychoanalysis_interst +
+                ", role_skill_psychology_growth=" + role_skill_psychology_growth +
+                ", role_skill_psychology_job=" + role_skill_psychology_job +
+                ", role_skill_psychology_interst=" + role_skill_psychology_interst +
+                ", role_skill_ride_growth=" + role_skill_ride_growth +
+                ", role_skill_ride_job=" + role_skill_ride_job +
+                ", role_skill_ride_interst=" + role_skill_ride_interst +
+                ", role_skill_science_geology_growth=" + role_skill_science_geology_growth +
+                ", role_skill_science_geology_job=" + role_skill_science_geology_job +
+                ", role_skill_science_geology_interst=" + role_skill_science_geology_interst +
+                ", role_skill_science_chemistry_growth=" + role_skill_science_chemistry_growth +
+                ", role_skill_science_chemistry_job=" + role_skill_science_chemistry_job +
+                ", role_skill_science_chemistry_interst=" + role_skill_science_chemistry_interst +
+                ", role_skill_science_biology_growth=" + role_skill_science_biology_growth +
+                ", role_skill_science_biology_job=" + role_skill_science_biology_job +
+                ", role_skill_science_biology_interst=" + role_skill_science_biology_interst +
+                ", role_skill_science_math_growth=" + role_skill_science_math_growth +
+                ", role_skill_science_math_job=" + role_skill_science_math_job +
+                ", role_skill_science_math_interst=" + role_skill_science_math_interst +
+                ", role_skill_science_astronomy_growth=" + role_skill_science_astronomy_growth +
+                ", role_skill_science_astronomy_job=" + role_skill_science_astronomy_job +
+                ", role_skill_science_astronomy_interst=" + role_skill_science_astronomy_interst +
+                ", role_skill_science_physics_growth=" + role_skill_science_physics_growth +
+                ", role_skill_science_physics_job=" + role_skill_science_physics_job +
+                ", role_skill_science_physics_interst=" + role_skill_science_physics_interst +
+                ", role_skill_science_pharmacy_growth=" + role_skill_science_pharmacy_growth +
+                ", role_skill_science_pharmacy_job=" + role_skill_science_pharmacy_job +
+                ", role_skill_science_pharmacy_interst=" + role_skill_science_pharmacy_interst +
+                ", role_skill_science_botany_growth=" + role_skill_science_botany_growth +
+                ", role_skill_science_botany_job=" + role_skill_science_botany_job +
+                ", role_skill_science_botany_interst=" + role_skill_science_botany_interst +
+                ", role_skill_science_zoology_growth=" + role_skill_science_zoology_growth +
+                ", role_skill_science_zoology_job=" + role_skill_science_zoology_job +
+                ", role_skill_science_zoology_interst=" + role_skill_science_zoology_interst +
+                ", role_skill_science_cryptography_growth=" + role_skill_science_cryptography_growth +
+                ", role_skill_science_cryptography_job=" + role_skill_science_cryptography_job +
+                ", role_skill_science_cryptography_interst=" + role_skill_science_cryptography_interst +
+                ", role_skill_science_engineering_growth=" + role_skill_science_engineering_growth +
+                ", role_skill_science_engineering_job=" + role_skill_science_engineering_job +
+                ", role_skill_science_engineering_interst=" + role_skill_science_engineering_interst +
+                ", role_skill_science_meteorology_growth=" + role_skill_science_meteorology_growth +
+                ", role_skill_science_meteorology_job=" + role_skill_science_meteorology_job +
+                ", role_skill_science_meteorology_interst=" + role_skill_science_meteorology_interst +
+                ", role_skill_science_judicial_science_growth=" + role_skill_science_judicial_science_growth +
+                ", role_skill_science_judicial_science_job=" + role_skill_science_judicial_science_job +
+                ", role_skill_science_judicial_science_interst=" + role_skill_science_judicial_science_interst +
+                ", role_skill_sleight_of_hand_growth=" + role_skill_sleight_of_hand_growth +
+                ", role_skill_sleight_of_hand_job=" + role_skill_sleight_of_hand_job +
+                ", role_skill_sleight_of_hand_interst=" + role_skill_sleight_of_hand_interst +
+                ", role_skill_recon_growth=" + role_skill_recon_growth +
+                ", role_skill_recon_job=" + role_skill_recon_job +
+                ", role_skill_recon_interst=" + role_skill_recon_interst +
+                ", role_skill_stealth_growth=" + role_skill_stealth_growth +
+                ", role_skill_stealth_job=" + role_skill_stealth_job +
+                ", role_skill_stealth_interst=" + role_skill_stealth_interst +
+                ", role_skill_survival_growth=" + role_skill_survival_growth +
+                ", role_skill_survival_job=" + role_skill_survival_job +
+                ", role_skill_survival_interst=" + role_skill_survival_interst +
+                ", role_skill_swim_growth=" + role_skill_swim_growth +
+                ", role_skill_swim_job=" + role_skill_swim_job +
+                ", role_skill_swim_interst=" + role_skill_swim_interst +
+                ", role_skill_beast_training_growth=" + role_skill_beast_training_growth +
+                ", role_skill_beast_training_job=" + role_skill_beast_training_job +
+                ", role_skill_beast_training_interst=" + role_skill_beast_training_interst +
+                ", role_skill_diving_growth=" + role_skill_diving_growth +
+                ", role_skill_diving_job=" + role_skill_diving_job +
+                ", role_skill_diving_interst=" + role_skill_diving_interst +
+                ", role_skill_demolition_growth=" + role_skill_demolition_growth +
+                ", role_skill_demolition_job=" + role_skill_demolition_job +
+                ", role_skill_demolition_interst=" + role_skill_demolition_interst +
+                ", role_skill_read_lips_growth=" + role_skill_read_lips_growth +
+                ", role_skill_read_lips_job=" + role_skill_read_lips_job +
+                ", role_skill_read_lips_interst=" + role_skill_read_lips_interst +
+                ", role_skill_hypnosis_growth=" + role_skill_hypnosis_growth +
+                ", role_skill_hypnosis_job=" + role_skill_hypnosis_job +
+                ", role_skill_hypnosis_interst=" + role_skill_hypnosis_interst +
+                ", role_skill_artillery_growth=" + role_skill_artillery_growth +
+                ", role_skill_artillery_job=" + role_skill_artillery_job +
+                ", role_skill_artillery_interst=" + role_skill_artillery_interst +
+                ", role_skill_lore_type='" + role_skill_lore_type + '\'' +
+                ", role_skill_lore_val_growth=" + role_skill_lore_val_growth +
+                ", role_skill_lore_val_job=" + role_skill_lore_val_job +
+                ", role_skill_lore_val_interst=" + role_skill_lore_val_interst +
+                '}';
+    }
+
     public Integer getRole_skill_lore_val_interst() {
         return role_skill_lore_val_interst;
     }
 
     public void setRole_skill_lore_val_interst(Integer role_skill_lore_val_interst) {
         this.role_skill_lore_val_interst = role_skill_lore_val_interst;
+    }
+
+    public List<SkillUnit> getSkillUnits(){
+        List<SkillUnit> list = new ArrayList<>();
+        SkillUnit skillUnit;
+        skillUnit = new SkillUnit("会计", "", 5, role_skill_accounting_growth, role_skill_accounting_job, role_skill_accounting_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("人类学", "", 1, role_skill_anthropology_growth, role_skill_anthropology_job, role_skill_anthropology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("估价", "", 5, role_skill_evaluation_growth, role_skill_evaluation_job, role_skill_evaluation_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("考古学", "", 1, role_skill_archaeology_growth, role_skill_archaeology_job, role_skill_archaeology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("写作", "", 5, role_skill_writing_growth, role_skill_writing_job, role_skill_writing_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("乐理", "", 5, role_skill_music_theory_growth, role_skill_music_theory_job, role_skill_music_theory_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("莫里斯舞", "", 5, role_skill_morris_dance_growth, role_skill_morris_dance_job, role_skill_morris_dance_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("歌剧歌唱", "", 5, role_skill_opera_singing_growth, role_skill_opera_singing_job, role_skill_opera_singing_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("粉刷匠与油漆工", "", 5, role_skill_whitewasher_painter_growth, role_skill_whitewasher_painter_job, role_skill_whitewasher_painter_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("摄影", "", 5, role_skill_photography_growth, role_skill_photography_job, role_skill_photography_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("舞蹈", "", 5, role_skill_dance_growth, role_skill_dance_job, role_skill_dance_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("美术", "", 5, role_skill_art_growth, role_skill_art_job, role_skill_art_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("伪造", "", 5, role_skill_forge_growth, role_skill_forge_job, role_skill_forge_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("制陶", "", 5, role_skill_pottery_making_growth, role_skill_pottery_making_job, role_skill_pottery_making_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("技术制图", "", 5, role_skill_technical_drawing_growth, role_skill_technical_drawing_job, role_skill_technical_drawing_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("耕作", "", 5, role_skill_farming_growth, role_skill_farming_job, role_skill_farming_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("打字", "", 5, role_skill_typing_growth, role_skill_typing_job, role_skill_typing_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("速记", "", 5, role_skill_shorthand_growth, role_skill_shorthand_job, role_skill_shorthand_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("吹制玻璃管", "", 5, role_skill_blown_glass_tube_growth, role_skill_blown_glass_tube_job, role_skill_blown_glass_tube_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("裁缝", "", 5, role_skill_tailor_growth, role_skill_tailor_job, role_skill_tailor_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("酿酒", "", 5, role_skill_make_wine_growth, role_skill_make_wine_job, role_skill_make_wine_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("捕鱼", "", 5, role_skill_fishing_growth, role_skill_fishing_job, role_skill_fishing_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("雕塑", "", 5, role_skill_sculpture_growth, role_skill_sculpture_job, role_skill_sculpture_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("杂技", "", 5, role_skill_acrobatics_growth, role_skill_acrobatics_job, role_skill_acrobatics_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("魅惑", "", 15, role_skill_seduce_growth, role_skill_seduce_job, role_skill_seduce_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("攀爬", "", 20, role_skill_climb_growth, role_skill_climb_job, role_skill_climb_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("计算机使用", "", 5, role_skill_computer_growth, role_skill_computer_job, role_skill_computer_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("信用评级", "", 0, role_skill_credit_growth, role_skill_credit_job, role_skill_credit_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("克苏鲁神话", "", 0, role_skill_cthulhu_mythos_growth, role_skill_cthulhu_mythos_job, role_skill_cthulhu_mythos_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("乔装", "", 5, role_skill_disguise_growth, role_skill_disguise_job, role_skill_disguise_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("闪避", "", 0, role_skill_dodge_growth, role_skill_dodge_job, role_skill_dodge_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("汽车驾驶", "", 20, role_skill_car_driving_growth, role_skill_car_driving_job, role_skill_car_driving_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("电气维修", "", 10, role_skill_electrical_maintenance_growth, role_skill_electrical_maintenance_job, role_skill_electrical_maintenance_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("电子学", "", 1, role_skill_electronics_growth, role_skill_electronics_job, role_skill_electronics_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("话术", "", 5, role_skill_speech_skill_growth, role_skill_speech_skill_job, role_skill_speech_skill_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("斗殴", "", 25, role_skill_combat_fight_growth, role_skill_combat_fight_job, role_skill_combat_fight_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("鞭子", "", 0, role_skill_combat_whip_growth, role_skill_combat_whip_job, role_skill_combat_whip_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("电锯", "", 0, role_skill_combat_electric_saw_growth, role_skill_combat_electric_saw_job, role_skill_combat_electric_saw_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("斧", "", 0, role_skill_combat_axe_growth, role_skill_combat_axe_job, role_skill_combat_axe_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("剑", "", 0, role_skill_combat_sword_growth, role_skill_combat_sword_job, role_skill_combat_sword_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("铰具", "", 0, role_skill_combat_hinge_growth, role_skill_combat_hinge_job, role_skill_combat_hinge_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("链枷", "", 0, role_skill_combat_flail_growth, role_skill_combat_flail_job, role_skill_combat_flail_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("矛", "", 0, role_skill_combat_spear_growth, role_skill_combat_spear_job, role_skill_combat_spear_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("手枪", "", 20, role_skill_shoot_pistol_growth, role_skill_shoot_pistol_job, role_skill_shoot_pistol_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("步枪/霰弹枪", "", 15, role_skill_shoot_rifle_shotgun_growth, role_skill_shoot_rifle_shotgun_job, role_skill_shoot_rifle_shotgun_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("弓术", "", 15, role_skill_shoot_archery_growth, role_skill_shoot_archery_job, role_skill_shoot_archery_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("火焰喷射器", "", 0, role_skill_shoot_flame_thrower_growth, role_skill_shoot_flame_thrower_job, role_skill_shoot_flame_thrower_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("机关枪", "", 0, role_skill_shoot_machine_gun_growth, role_skill_shoot_machine_gun_job, role_skill_shoot_machine_gun_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("重武器", "", 0, role_skill_shoot_heavy_weapon_growth, role_skill_shoot_heavy_weapon_job, role_skill_shoot_heavy_weapon_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("急救", "", 30, role_skill_first_aid_growth, role_skill_first_aid_job, role_skill_first_aid_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("历史", "", 5, role_skill_history_growth, role_skill_history_job, role_skill_history_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("恐吓", "", 15, role_skill_threaten_growth, role_skill_threaten_job, role_skill_threaten_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("跳跃", "", 20, role_skill_jump_growth, role_skill_jump_job, role_skill_jump_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("外语1", role_skill_language_type1, 0, role_skill_language_val1_growth, role_skill_language_val1_job, role_skill_language_val1_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("外语2", role_skill_language_type2, 0, role_skill_language_val2_growth, role_skill_language_val2_job, role_skill_language_val2_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("外语3", role_skill_language_type3, 0, role_skill_language_val3_growth, role_skill_language_val3_job, role_skill_language_val3_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("母语", role_skill_mother_tongue_type, 0, role_skill_mother_tongue_val_growth, role_skill_mother_tongue_val_job, role_skill_mother_tongue_val_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("投掷", "", 20, role_skill_throw_growth, role_skill_throw_job, role_skill_throw_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("追踪", "", 10, role_skill_track_growth, role_skill_track_job, role_skill_track_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("法律", "", 5, role_skill_law_growth, role_skill_law_job, role_skill_law_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("图书馆使用", "", 20, role_skill_library_use_growth, role_skill_library_use_job, role_skill_library_use_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("聆听", "", 20, role_skill_listen_growth, role_skill_listen_job, role_skill_listen_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("锁匠", "", 1, role_skill_locksmith_growth, role_skill_locksmith_job, role_skill_locksmith_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("机械维修", "", 10, role_skill_mechanical_repair_growth, role_skill_mechanical_repair_job, role_skill_mechanical_repair_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("医学", "", 1, role_skill_medicine_growth, role_skill_medicine_job, role_skill_medicine_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("自然学", "", 10, role_skill_natural_world_growth, role_skill_natural_world_job, role_skill_natural_world_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("导航", "", 10, role_skill_navigate_growth, role_skill_navigate_job, role_skill_navigate_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("神秘学", "", 5, role_skill_occult_growth, role_skill_occult_job, role_skill_occult_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("操作重型机械", "", 1, role_skill_operate_heavy_machinery_growth, role_skill_operate_heavy_machinery_job, role_skill_operate_heavy_machinery_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("说服", "", 10, role_skill_persuade_growth, role_skill_persuade_job, role_skill_persuade_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("驾驶飞行器", "", 1, role_skill_drive_aircraft_growth, role_skill_drive_aircraft_job, role_skill_drive_aircraft_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("驾驶船", "", 1, role_skill_drive_ship_growth, role_skill_drive_ship_job, role_skill_drive_ship_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("精神分析", "", 1, role_skill_psychoanalysis_growth, role_skill_psychoanalysis_job, role_skill_psychoanalysis_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("心理学", "", 10, role_skill_psychology_growth, role_skill_psychology_job, role_skill_psychology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("骑乘", "", 5, role_skill_ride_growth, role_skill_ride_job, role_skill_ride_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("地质学", "", 1, role_skill_science_geology_growth, role_skill_science_geology_job, role_skill_science_geology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("化学", "", 1, role_skill_science_chemistry_growth, role_skill_science_chemistry_job, role_skill_science_chemistry_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("生物学", "", 1, role_skill_science_biology_growth, role_skill_science_biology_job, role_skill_science_biology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("数学", "", 1, role_skill_science_math_growth, role_skill_science_math_job, role_skill_science_math_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("天文学", "", 1, role_skill_science_astronomy_growth, role_skill_science_astronomy_job, role_skill_science_astronomy_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("物理学", "", 1, role_skill_science_physics_growth, role_skill_science_physics_job, role_skill_science_physics_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("药学", "", 1, role_skill_science_pharmacy_growth, role_skill_science_pharmacy_job, role_skill_science_pharmacy_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("植物学", "", 1, role_skill_science_botany_growth, role_skill_science_botany_job, role_skill_science_botany_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("动物学", "", 1, role_skill_science_zoology_growth, role_skill_science_zoology_job, role_skill_science_zoology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("密码学", "", 1, role_skill_science_cryptography_growth, role_skill_science_cryptography_job, role_skill_science_cryptography_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("工程学", "", 1, role_skill_science_engineering_growth, role_skill_science_engineering_job, role_skill_science_engineering_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("气象学", "", 1, role_skill_science_meteorology_growth, role_skill_science_meteorology_job, role_skill_science_meteorology_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("司法科学", "", 1, role_skill_science_judicial_science_growth, role_skill_science_judicial_science_job, role_skill_science_judicial_science_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("妙手", "", 10, role_skill_sleight_of_hand_growth, role_skill_sleight_of_hand_job, role_skill_sleight_of_hand_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("侦查", "", 25, role_skill_recon_growth, role_skill_recon_job, role_skill_recon_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("潜行", "", 20, role_skill_stealth_growth, role_skill_stealth_job, role_skill_stealth_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("生存", "", 10, role_skill_survival_growth, role_skill_survival_job, role_skill_survival_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("游泳", "", 20, role_skill_swim_growth, role_skill_swim_job, role_skill_swim_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("驯兽", "", 5, role_skill_beast_training_growth, role_skill_beast_training_job, role_skill_beast_training_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("潜水", "", 1, role_skill_diving_growth, role_skill_diving_job, role_skill_diving_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("爆破", "", 1, role_skill_demolition_growth, role_skill_demolition_job, role_skill_demolition_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("读唇", "", 1, role_skill_read_lips_growth, role_skill_read_lips_job, role_skill_read_lips_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("催眠", "", 1, role_skill_hypnosis_growth, role_skill_hypnosis_job, role_skill_hypnosis_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("炮术", "", 1, role_skill_artillery_growth, role_skill_artillery_job, role_skill_artillery_interst);
+        list.add(skillUnit);
+        skillUnit = new SkillUnit("学问", role_skill_lore_type, 0, role_skill_lore_val_growth, role_skill_lore_val_job, role_skill_lore_val_interst);
+        list.add(skillUnit);
+        return list;
     }
 }

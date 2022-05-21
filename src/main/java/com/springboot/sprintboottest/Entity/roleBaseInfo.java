@@ -73,6 +73,15 @@ public class roleBaseInfo {
         return RoleGender;
     }
 
+    public String getRoleGenderString(){
+        if(RoleGender.equals(1))
+            return "男";
+        else if(RoleGender.equals(0))
+            return "女";
+        else
+            return "自定义";
+    }
+
     public void setRoleGender(Integer roleGender) {
         RoleGender = roleGender;
     }
