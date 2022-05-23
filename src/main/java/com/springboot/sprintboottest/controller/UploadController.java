@@ -27,7 +27,7 @@ public class UploadController {
         //System.out.println(f.getPath());
         //inputStreamToFile(inputStream, f);
         //String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\img\\usricon\\";
-        String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\img\\usricon\\";
+        String dir = (new File("").getAbsolutePath())+"\\serverfs\\img\\usricon\\";
         Object object = request.getSession().getAttribute("UserId");
         Integer userId = Integer.parseInt(object.toString());
         //System.out.println(userId);

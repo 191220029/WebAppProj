@@ -73,7 +73,7 @@ public class RolesTableController {
 //        System.out.println(r.getRoleCardPlayerId());
         user u = userRepository.findByUserId(1);
 //        System.out.println(u.toString());
-        String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\cards\\";
+        String dir = (new File("").getAbsolutePath())+"\\serverfs\\cards\\";
         return XLSWriter.cardToXLS(r, u, rbi, re, dir);
     }
 
