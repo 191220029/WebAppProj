@@ -189,7 +189,43 @@
                     gender = 0;
                 else
                     gender = 2;
-                /*TODO: 完成提交的新信息的格式检查*/
+                /*新信息的格式检查*/
+                //Step1: 用户名格式
+                //用户名格式，6-30位字母、数字或_，字母开头
+                if(/^[A-Za-z]\w{5,29}$/.test(username)===false){
+                    alert("用户名" + username + "不符合规范");
+                    return;
+                }
+                //Step2: 用户名已被使用
+                let flag = true;
+                $.ajax({
+                    type: "GET",
+                    url: "/user/logon/DuplicateUserName",
+                    data: "username=" + username,
+                    //dataType: "json",//数据响应格式
+                    success: function (data) {
+                        //console.log(data);
+                        if(data === "TRUE"){
+                            alert("用户名" + username + "已被使用。");
+                            flag = false;
+                        }
+                    },
+                    error: function (data) {
+                        flag = false;
+                    }
+                })
+                if(flag === false)
+                    return;
+                //Step5: 邮箱格式
+                if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(email)===false){
+                    alert("输入的邮箱格式不正确");
+                    return;
+                }
+                //Step6: 性别>-1
+                if(gender<0){
+                    alert("请选择性别");
+                    return;
+                }
 
                 $.ajax({
                     type: "POST",
@@ -237,14 +273,20 @@
                 //console.log(oldPassword);
                 let newPassword = document.getElementById("newPassword").value;
                 let passwordRepeat = document.getElementById("PasswordRepeat").value;
-                if(newPassword != passwordRepeat){
+                if(newPassword !== passwordRepeat){
                     alert("两次输入的密码不一致");
                 }
                 else {
-                    /*TODO: 完成对提交的新密码的格式检查
+                    /*新密码的格式检查
                     * 如果检查未通过，那么将不会执行下面的ajax语句
                     * */
 
+                    //Step3: 密码格式
+                    //密码格式，6-30位字母、数字或_
+                    if(/^\w{6,30}$/.test(password)===false){
+                        alert("设置的密码不符合规范");
+                        return;
+                    }
                     let userId = [[${UserId}]];
                     $.ajax({
                         type: "POST",
