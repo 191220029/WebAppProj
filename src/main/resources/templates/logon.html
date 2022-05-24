@@ -33,7 +33,7 @@
                         <!--密码-->
                         <div class="form-group input-group">
                             <span class="input-group-addon">
-                                <td class="input-group-addon-another"><abbr title="6-30位字母、数字、_或@" th:text="密码"></abbr></td>
+                                <td class="input-group-addon-another"><abbr title="6-30位字母、数字或_" th:text="密码"></abbr></td>
                             </span>
                             <input type="password" id="password" class="form-control" name="password" placeholder="请输入密码" />
                         </div>
@@ -98,7 +98,7 @@
         //Step1: 用户名格式
         //用户名格式，6-30位字母、数字或_，字母开头
         if(/^[A-Za-z]\w{5,29}$/.test(username)===false){
-            alert("用户名" + username + "不符合规范");
+            alert("用户名" + username + "不符合规范，用户名应为6-30位字母、数字或_，字母开头");
             return;
         }
         //Step2: 用户名已被使用
@@ -111,7 +111,7 @@
             success: function (data) {
                 //console.log(data);
                 if(data === "TRUE"){
-                    alert("用户名" + username + "已被使用。");
+                    alert("用户名" + username + "已被使用");
                     flag = false;
                 }
             },
@@ -124,7 +124,7 @@
         //Step3: 密码格式
         //密码格式，6-30位字母、数字或_
         if(/^\w{6,30}$/.test(password)===false){
-            alert("设置的密码不符合规范");
+            alert("设置的密码不符合规范，密码应为6-30位字母、数字、_");
             return;
         }
         //Step4: 两次密码输入一致性
@@ -134,7 +134,7 @@
         }
         //Step5: 邮箱格式
         if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(mailbox)===false){
-            alert("输入的邮箱格式不正确");
+            alert("输入的邮箱格式不正确，请注意邮箱的规范");
             return;
         }
         //Step6: 性别>-1

@@ -348,7 +348,7 @@
                     updateJobSkillMark(data);
                 },
                 error: function (data) {
-                    console.log(data)
+                    console.log(data);
                     console.log("Failed");
                     alert("无效的职业ID.也可能是服务器似乎出现了一点问题，稍后再试试吧");
                 }
@@ -566,7 +566,27 @@
             }
         }
 
+
         console.log(inputValue);
+        let jobinput = document.getElementById("jobSkillPoints").innerText;
+        let interestinput = document.getElementById("interestSkillPoints").innerText;
+        jobinput = String(jobinput).substring(String(jobinput).indexOf(": ") +1,String(jobinput).indexOf("/"));
+        interestinput = String(interestinput).substring(String(interestinput).indexOf(": ") +1,String(interestinput).indexOf("/"));
+        var job = Number(jobinput);
+        var interest = Number(interestinput);
+
+        console.log(job);
+        console.log(interest);
+        if(job < 0){
+            alert("职业分配超量，请重新分配");
+            return ;
+        }
+        if(interest < 0){
+            alert("兴趣点分配超量，请重新分配");
+            return ;
+        }
+
+
         $.ajax({
             type: "POST",
             url: "/rolecreate/create",

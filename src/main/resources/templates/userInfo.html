@@ -193,7 +193,7 @@
                 //Step1: 用户名格式
                 //用户名格式，6-30位字母、数字或_，字母开头
                 if(/^[A-Za-z]\w{5,29}$/.test(username)===false){
-                    alert("用户名" + username + "不符合规范");
+                    alert("用户名" + username + "不符合规范，用户名应为6-30位字母、数字或_，字母开头");
                     return;
                 }
                 //Step2: 用户名已被使用
@@ -206,7 +206,7 @@
                     success: function (data) {
                         //console.log(data);
                         if(data === "TRUE"){
-                            alert("用户名" + username + "已被使用。");
+                            alert("用户名" + username + "已被使用");
                             flag = false;
                         }
                     },
@@ -218,7 +218,7 @@
                     return;
                 //Step5: 邮箱格式
                 if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(email)===false){
-                    alert("输入的邮箱格式不正确");
+                    alert("输入的邮箱格式不正确，请注意邮箱的规范");
                     return;
                 }
                 //Step6: 性别>-1
@@ -274,7 +274,7 @@
                 let newPassword = document.getElementById("newPassword").value;
                 let passwordRepeat = document.getElementById("PasswordRepeat").value;
                 if(newPassword !== passwordRepeat){
-                    alert("两次输入的密码不一致");
+                    alert("两次密码输入不一致，请重新确认");
                 }
                 else {
                     /*新密码的格式检查
@@ -284,7 +284,7 @@
                     //Step3: 密码格式
                     //密码格式，6-30位字母、数字或_
                     if(/^\w{6,30}$/.test(password)===false){
-                        alert("设置的密码不符合规范");
+                        alert("设置的密码不符合规范，密码应为6-30位字母、数字、_");
                         return;
                     }
                     let userId = [[${UserId}]];

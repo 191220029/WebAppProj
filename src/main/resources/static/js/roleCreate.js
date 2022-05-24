@@ -1151,4 +1151,3 @@ function updateJobSkillMark(job){
     let jobSkills = job.jobSkills;
     console.log(jobSkills);
 }
-
