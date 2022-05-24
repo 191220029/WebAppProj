@@ -339,18 +339,14 @@
                 button.innerText="确认修改";
                 for(let i = 0; i < inputs.length; i++){
                     if(inputs[i].classList.contains("changeable")){
-                        //console.log(inputs[i].innerHTML);
                         if(inputs[i].classList.contains("Integer")){
-                            //console.log(inputs[i].innerText);
                             inputs[i].innerHTML="<input type='number' value='"+inputs[i].innerText+"' min='0', max='100' step='5'/>"
-                            //console.log(inputs[i].innerHTML);
                         }
                     }
                 }
             }
             else{
                 button.innerText="编辑";
-
                 let STR=inputs[0].children[0].value;
                 let DEX=inputs[1].children[0].value;
                 let CON=inputs[2].children[0].value;
@@ -361,17 +357,6 @@
                 let EDU=inputs[7].children[0].value;
                 let MOV=inputs[8].children[0].value;
                 let LUCK=inputs[9].children[0].value;
-                /*console.log(STR);
-                console.log(DEX);
-                console.log(CON);
-                console.log(APP);
-                console.log(SIZ);
-                console.log(INT);
-                console.log(POW);
-                console.log(EDU);
-                console.log(MOV);
-                console.log(LUCK);*/
-
                 let url = "/roleElement/Edit/RoleCardId="+roleId+"&RoleStr="+STR+
                     "&RoleCon="+CON+"&RoleSiz="+SIZ+"&RoleDex="+DEX+"&RoleApp="+APP+
                     "&RoleInt="+INT+"&RolePow="+POW+"&RoleLuck="+LUCK+"&RoleEdu="+EDU+

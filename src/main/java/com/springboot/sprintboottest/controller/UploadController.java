@@ -35,7 +35,6 @@ public class UploadController {
         String filePath = pathGenerate(userId, dir);
         File f = new File(filePath);
         OutputStream outputStream = new FileOutputStream(f);
-        //System.out.println(f.getPath());
         byte[] buffer = new byte[8192];
         Integer bytesRead = 0;
         while ((bytesRead = inputStream.read(buffer, 0, 8192)) != -1) {

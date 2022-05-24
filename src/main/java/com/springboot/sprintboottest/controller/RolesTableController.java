@@ -68,11 +68,7 @@ public class RolesTableController {
         role r = roleRepository.findRole(ID);
         roleBaseInfo rbi = roleBaseInfoRepository.findRolebaseinfo_id(r.getRoleCardId());
         roleElement re = roleElementRepository.findRoleElement_id(r.getRoleCardId());
-//        System.out.println(ID);
-//        System.out.println(r.toString());
-//        System.out.println(r.getRoleCardPlayerId());
         user u = userRepository.findByUserId(1);
-//        System.out.println(u.toString());
         String dir = "E:\\本科\\SpringBoot\\sprintboot-test\\serverfs\\cards\\";
         return XLSWriter.cardToXLS(r, u, rbi, re, dir);
     }

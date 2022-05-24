@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LoginHandlerInterceptor implements HandlerInterceptor {
     @Override
-
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+    public boolean preHandle(HttpServletRequest request,
+                             HttpServletResponse response, Object handler)
+            throws Exception{
         //登陆成功后应该有用户的session
         Object loginUser = request.getSession().getAttribute("loginUser");
         if(loginUser == null){

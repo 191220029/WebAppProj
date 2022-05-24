@@ -30,10 +30,12 @@ public class LoginController {
         //System.out.println(username+password);
         //判断账号密码是否正确
         user u = userRepository.findByUserName(username);
+        //用户不存在
         if(u == null){
             model.addAttribute("msg", "不存在该用户");
             return "login";
         }
+        //密码正确
         else if(password.equals(u.getUserPassword())){
             session.setAttribute("loginUser", username);
             session.setAttribute("UserId", u.getUserId());
@@ -52,17 +54,10 @@ public class LoginController {
         userRepository.setLoginTime(ft.format(date), u.getUserId());
         return "redirect:/index";
     }
+        //密码错误
         else {
             model.addAttribute("msg", "密码错误");
             return "login";
         }
-        /*if((!StringUtils.isEmpty(username)) && "123456".equals(password)){
-            session.setAttribute("loginUser", username);
-            return "redirect:/index";
-        }
-        else {
-            model.addAttribute("msg", "用户名或密码错误");
-            return "login";
-        }*/
     }
 }

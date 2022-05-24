@@ -338,12 +338,9 @@
         let url = "/rolesBaseInfo/UserId="+id;
         $.get(url, function (data, status) {
             if(status==="success") {
-                //console.log(data);
-                //console.log(data.length);
-                //console.log(data);
-                //$("#role-cards-root").html("<a>"+data+"</a>");
                 let html="<div class=\"row\">" +
                     "<div class=\"col-md-6\">";
+                //遍历所有卡牌生成对应的HTML
                 for(let i = 0; i < data.length; i++){
                     let gender = "";
                     if(data[i].roleGender===1)
@@ -394,8 +391,9 @@
                     +"</div>";
                 }
                 html+="</div></div>"
+                //添加HTML至页面
                 $("#role-cards-root").html(html);
-
+                //`查看详细信息按钮`按下的回调函数
                 $(".fullInfoButton").click(function (e) {
                     //console.log(e.currentTarget.name);
                     let roleId = e.currentTarget.name.substring(9);
@@ -403,7 +401,7 @@
                     sessionStorage.setItem("roleId", roleId);
                     window.location.replace("/table/roleInfo");
                 })
-
+                //`删除按钮`按下的回调函数
                 $(".deleteButton").click(function (e) {
                     let roleId = e.currentTarget.name.substring(9);
                     // console.log(roleId);

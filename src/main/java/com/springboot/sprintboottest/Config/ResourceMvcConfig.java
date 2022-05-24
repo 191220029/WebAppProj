@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class ResourceMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler("/file/**").addResourceLocations("file:E:/本科/SpringBoot/sprintboot-test/serverfs/");
+        registry.addResourceHandler("/file/**").
+                addResourceLocations("file:E:/本科/SpringBoot/sprintboot-test/serverfs/");
     }
 }
