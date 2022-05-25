@@ -112,7 +112,55 @@
                 //console.log(data);
                 if(data === "TRUE"){
                     alert("用户名" + username + "已被使用");
-                    flag = false;
+                    return;
+                }
+                else{
+                    //Step3: 密码格式
+                    //密码格式，6-30位字母、数字或_
+                    if(/^\w{6,30}$/.test(password)===false){
+                        alert("设置的密码不符合规范，密码应为6-30位字母、数字、_");
+                        return;
+                    }
+                    //Step4: 两次密码输入一致性
+                    if(password!=password_confirm){
+                        alert("两次密码输入不一致，请重新确认");
+                        return;
+                    }
+                    //Step5: 邮箱格式
+                    if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(mailbox)===false){
+                        alert("输入的邮箱格式不正确，请注意邮箱的规范");
+                        return;
+                    }
+                    //Step6: 性别>-1
+                    if(gender<0){
+                        alert("请选择性别");
+                        return;
+                    }
+                    //提交信息
+                    $.ajax({
+                        type: "GET",
+                        url: "/user/logon",
+                        data: "username=" + username +
+                            "&password=" + password +
+                            "&gender=" + gender +
+                            "&assignment=" +
+                            "&email=" + mailbox +
+                            "&icon_path=null",
+                        //dataType: "json",//数据响应格式
+                        success: function (data) {
+                            //console.log(data);
+                            if(data === "OK"){
+                                alert("注册成功!");
+                                window.location.replace("/index");
+                            }
+                            else
+                                alert("服务器似乎出现了一点问题，稍后再试试吧");
+                        },
+                        error: function (data) {
+                            //console.log("Failed");
+                            alert("服务器似乎出现了一点问题，稍后再试试吧");
+                        }
+                    })
                 }
             },
             error: function (data) {
@@ -121,53 +169,7 @@
         })
         if(flag === false)
             return;
-        //Step3: 密码格式
-        //密码格式，6-30位字母、数字或_
-        if(/^\w{6,30}$/.test(password)===false){
-            alert("设置的密码不符合规范，密码应为6-30位字母、数字、_");
-            return;
-        }
-        //Step4: 两次密码输入一致性
-        if(password!=password_confirm){
-            alert("两次密码输入不一致，请重新确认");
-            return;
-        }
-        //Step5: 邮箱格式
-        if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(mailbox)===false){
-            alert("输入的邮箱格式不正确，请注意邮箱的规范");
-            return;
-        }
-        //Step6: 性别>-1
-        if(gender<0){
-            alert("请选择性别");
-            return;
-        }
-        //TODO: 完成正确性检查功能后，给下面的ajax代码段取消注释即可完成注册辣
 
-        $.ajax({
-            type: "GET",
-            url: "/user/logon",
-            data: "username=" + username +
-                "&password=" + password +
-                "&gender=" + gender +
-                "&assignment=" +
-                "&email=" + mailbox +
-                "&icon_path=null",
-            //dataType: "json",//数据响应格式
-            success: function (data) {
-                //console.log(data);
-                if(data === "OK"){
-                    alert("注册成功!");
-                    window.location.replace("/index");
-                }
-                else
-                    alert("服务器似乎出现了一点问题，稍后再试试吧");
-            },
-            error: function (data) {
-                //console.log("Failed");
-                alert("服务器似乎出现了一点问题，稍后再试试吧");
-            }
-        })
     })
 </script>
 

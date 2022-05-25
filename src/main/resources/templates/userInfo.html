@@ -208,7 +208,47 @@
                         if(data === "TRUE"){
                             alert("用户名" + username + "已被使用");
                             flag = false;
+                            return;
                         }
+                        //Step5: 邮箱格式
+                        if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(email)===false){
+                            alert("输入的邮箱格式不正确，请注意邮箱的规范");
+                            return;
+                        }
+                        //Step6: 性别>-1
+                        if(gender<0){
+                            alert("请选择性别");
+                            return;
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/userInfo/updateBaseInfo",
+                            datatype:"json",
+                            data:
+                                "userAssignment=" + assignment +
+                                "&userEmail=" + email +
+                                "&userGender=" + gender +
+                                "&userName=" + username +
+                                "&userId=" + userId,
+                            //dataType: "json",//数据响应格式
+                            success: function (data) {
+                                //console.log(data);
+                                if(data === "OK"){
+                                    alert("修改成功!");
+                                    location.reload();
+                                }
+                                else {
+                                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                                    location.reload();
+                                }
+                            },
+                            error: function (data) {
+                                console.log(data)
+                                console.log("Failed");
+                                alert("服务器似乎出现了一点问题，稍后再试试吧");
+                            }
+                        })
                     },
                     error: function (data) {
                         flag = false;
@@ -216,45 +256,7 @@
                 })
                 if(flag === false)
                     return;
-                //Step5: 邮箱格式
-                if(/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(email)===false){
-                    alert("输入的邮箱格式不正确，请注意邮箱的规范");
-                    return;
-                }
-                //Step6: 性别>-1
-                if(gender<0){
-                    alert("请选择性别");
-                    return;
-                }
 
-                $.ajax({
-                    type: "POST",
-                    url: "/userInfo/updateBaseInfo",
-                    datatype:"json",
-                    data:
-                        "userAssignment=" + assignment +
-                        "&userEmail=" + email +
-                        "&userGender=" + gender +
-                        "&userName=" + username +
-                        "&userId=" + userId,
-                    //dataType: "json",//数据响应格式
-                    success: function (data) {
-                        //console.log(data);
-                        if(data === "OK"){
-                            alert("修改成功!");
-                            location.reload();
-                        }
-                        else {
-                            alert("服务器似乎出现了一点问题，稍后再试试吧");
-                            location.reload();
-                        }
-                    },
-                    error: function (data) {
-                        console.log(data)
-                        console.log("Failed");
-                        alert("服务器似乎出现了一点问题，稍后再试试吧");
-                    }
-                })
             }
         })
 
