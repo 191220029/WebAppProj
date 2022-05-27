@@ -1,6 +1,9 @@
 package com.springboot.sprintboottest.controller;
 
+import com.springboot.sprintboottest.Entity.user;
+import com.springboot.sprintboottest.Entity.role;
 import com.springboot.sprintboottest.Entity.roleBaseInfo;
+import com.springboot.sprintboottest.Repository.UserRepository;
 import com.springboot.sprintboottest.Repository.RoleBaseInfoRepository;
 import com.springboot.sprintboottest.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,23 @@ public class RoleTable_Admin_Controller {
     UserRepository userRepository;
     @Autowired
     RoleBaseInfoRepository roleBaseInfoRepository;
+
     @GetMapping("/admin/roleTable")
-    public String adminRoleTable(){
+    public String adminUserTable(){
         //TODO: 返回管理员搜索角色卡页面的html文件名
         return "admin";
     }
+
+
+    @ResponseBody
+    @RequestMapping("/admin/roleTable")
+    public List<user> adminSearchUserTable(){
+
+        List<user> users = userRepository.findAllUsers();
+        return users;
+    }
+
+
     @ResponseBody
     @RequestMapping("/admin/roleTable/search")
     public List<roleBaseInfo> adminSearchRole(

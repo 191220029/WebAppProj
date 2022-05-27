@@ -15,6 +15,7 @@
     <link th:href="@{/css/custom.css}" rel="stylesheet" />
     <!--TABLE STYLES-->
     <link th:href="@{/css/table-style.css}" rel="stylesheet" />
+    <link th:href="@{/css/search.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -33,18 +34,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-
+                <div class="col-md-6 col-offset-3">
+                    <div class="box">
+                        <input type="text" class="input" placeholder="请输入要管理的账户的用户名"/>
+                        <input type="button" class="search" value="搜索" />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-
+                    <div><font color="white">List</font></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="userListTable"></div>
                 </div>
             </div>
         </div>
@@ -66,3 +70,62 @@
 <script th:src="@{/js/custom.js}"></script>
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $("#Admin_a").addClass("active-menu");
+        $.ajax({
+            type: "POST",
+            url: "/admin/roleTable",
+            datatype: "json",
+            success: function (data) {
+                console.log(data);
+                //console.log(data);
+                //显示基本信息的编辑
+                showUserTable(data);
+            },
+            error: function (data) {
+                console.log(data)
+                console.log("Failed");
+                alert("服务器似乎出现了一点问题，稍后再试试吧");
+            }
+        })
+    })
+
+    function showUserTable(data){
+        let userTableHtml = "";
+        for(let i = 0; i < data.length; i++) {
+            let gender = "其他";
+            if(data[i].userGender==="0")
+                gender="女";
+            else if(data[i].userGender==="1")
+                gender="男";
+            userTableHtml += "<div class='panel panel-default'>"
+            + " <div class = 'panel-heading'>用户名:" + data[i].userName + "</div>"
+            + "<div class='panel-body'>"
+            + "<div class='table-responsive'>"
+            + "<table class='table table-striped table-bordered table-hover'>"
+            + "<tbody>"
+            + "<tr>"
+            + "<th id ='userAssignment_head' class = 'cell-head userBaseInfo-cell-head'>个性签名</th>"
+            + "<th id ='userAssignment_val' class = 'cell-val  userBaseInfo-cell-val'>" + data[i].userAssignment + "</th>"
+            + "</tr>"
+            + "<tr>"
+            + "<th id ='userEmail_head' class = 'cell-head userBaseInfo-cell-head'>邮箱地址</th>"
+            + "<th id ='userEmail_val' class = 'cell-val  userBaseInfo-cell-val'>" + data[i].userEmail + "</th>"
+            + "</tr>"
+            + "<tr>"
+            + "<th id ='userGender_head' class = 'cell-head userBaseInfo-cell-head'>性别</th>"
+            + "<th id ='userGender_val' class = 'cell-val  userBaseInfo-cell-val gender'>" + gender + "</th>"
+            + "</tr>"
+            + " </tbody> "
+            + "</table>"
+            + "</div>"
+            + "</div> "
+            + "</div>"
+        }
+        $("#userListTable").html(userTableHtml);
+    }
+
+
+</script>

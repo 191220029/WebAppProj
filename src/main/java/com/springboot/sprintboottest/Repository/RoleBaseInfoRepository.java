@@ -18,7 +18,6 @@ public interface RoleBaseInfoRepository extends JpaRepository<roleBaseInfo, Inte
     @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.role_base_info WHERE role_name LIKE \"%:roleName%\"")
     List<roleBaseInfo> findroleBaseInfosByName(@Param("roleName") String roleName);
 
-
     @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.role_base_info WHERE role_name LIKE \"%:roleName%\" AND role_card_player_id = :Id")
     List<roleBaseInfo> findroleBaseInfosByNameAndId(@Param("roleName") String roleName,
                                                     @Param("Id") Integer Id);

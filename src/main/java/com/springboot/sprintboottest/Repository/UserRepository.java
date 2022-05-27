@@ -19,6 +19,10 @@ public interface UserRepository extends JpaRepository<user, Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.user WHERE user_name = :username")
     List<user> findsByUserName(@Param("username") String username);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.user")
+    List<user> findAllUsers();
+
+
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "INSERT INTO kesulu_online.user("
