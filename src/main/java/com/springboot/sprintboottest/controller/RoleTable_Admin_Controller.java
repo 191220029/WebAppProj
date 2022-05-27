@@ -21,7 +21,7 @@ public class RoleTable_Admin_Controller {
     @GetMapping("/admin/roleTable")
     public String adminRoleTable(){
         //TODO: 返回管理员搜索角色卡页面的html文件名
-        return null;
+        return "admin";
     }
     @ResponseBody
     @RequestMapping("/admin/roleTable/search")
