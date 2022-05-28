@@ -8,11 +8,13 @@ import com.springboot.sprintboottest.Repository.RoleBaseInfoRepository;
 import com.springboot.sprintboottest.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,21 +34,20 @@ public class RoleTable_Admin_Controller {
     @ResponseBody
     @RequestMapping("/admin/roleTable")
     public List<user> adminSearchUserTable(){
-
         List<user> users = userRepository.findAllUsers();
         return users;
     }
 
-
+//findByUserName(@Param("username") String username);
     @ResponseBody
     @RequestMapping("/admin/roleTable/search")
-    public List<roleBaseInfo> adminSearchRole(
-            @RequestParam("adminId") Integer adminId,
-            @RequestParam("mod") String mod,
-            @RequestParam("keyword") String keyword
+    public user adminSearchUser(
+            @RequestParam("username") String username,
+            Model model, HttpSession session
     )
     {
         //TODO: 返回查找结果
-        return null;
+        user u = userRepository.findByUserName(username);
+        return u;
     }
 }

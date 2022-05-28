@@ -40,6 +40,7 @@ public class LoginController {
             session.setAttribute("loginUser", username);
             session.setAttribute("UserId", u.getUserId());
             session.setAttribute("lastLoginTime", u.getUserLastLoginTime());
+            session.setAttribute("privilegeLevel", u.getUserPrivilegeLevel());
         if(u.getUserIconPath() == null || u.getUserIconPath().equals("null"))
             session.setAttribute("photo", "/serverfs/img/usricon/default.jpg");
         else
