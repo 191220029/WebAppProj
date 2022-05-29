@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -25,9 +29,15 @@ public class RoleTable_Admin_Controller {
     RoleBaseInfoRepository roleBaseInfoRepository;
 
     @GetMapping("/admin/userTable")
-    public String adminUserTable(){
-        //TODO: 返回管理员搜索角色卡页面的html文件名
-        return "admin";
+    public String adminUserTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //返回管理员搜索角色卡页面的html文件名
+        Object userId = request.getSession().getAttribute("UserId");
+        user u = userRepository.findByUserId(Integer.parseInt(userId.toString()));
+        if(u.getUserPrivilegeLevel() <= 10)
+            return "admin";
+        else {
+            return "/index";
+        }
     }
 
 
@@ -54,6 +64,9 @@ public class RoleTable_Admin_Controller {
     public String adminDeleteUser(
             @RequestParam("userId") Integer userId
     ){
+        user u = userRepository.findByUserId(userId);
+        if(u.getUserPrivilegeLevel() <= 10)
+            return "您不能封禁管理员账号。";
         userRepository.deleteById(userId);
         return "TRUE";
     }

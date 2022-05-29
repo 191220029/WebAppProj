@@ -42,6 +42,8 @@ public class myMVCConfig implements WebMvcConfigurer {
         .addPathPatterns("/**").excludePathPatterns(
                 "/login", "/logon", "/test", "/testRequest",
                 "/user/**", "/css/**","/fonts/**","/img/**","/js/**");
+
+        //registry.addInterceptor(new AdminHandlerInterceptor()).addPathPatterns("/admin/**");
     }
 
     //配置本地资源映射路径
