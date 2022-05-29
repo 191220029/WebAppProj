@@ -13,6 +13,10 @@ public interface UserRepository extends JpaRepository<user, Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.user WHERE user_name = :username")
     user findByUserName(@Param("username") String username);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.user WHERE user_name LIKE %:username%")
+    List<user> searchByUserName(@Param("username") String username);
+
+
     @Query(nativeQuery = true, value = "SELECT * FROM kesulu_online.user WHERE user_id = :userId")
     user findByUserId(@Param("userId") Integer userId);
 
@@ -92,5 +96,12 @@ public interface UserRepository extends JpaRepository<user, Integer> {
     void updatePassword(
         @Param("password") String password,
         @Param("userId") Integer userId
+    );
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE FROM kesulu_online.user WHERE user_id = :userId")
+    void deleteById(
+            @Param("userId") Integer userId
     );
 }

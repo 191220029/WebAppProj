@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-6 col-offset-3">
                     <div class="box">
-                        <input type="text" class="input" id="searchTarget" placeholder="请输入要管理的账户的用户名"/>
+                        <input type="text" class="input" id="searchTarget" placeholder="输入用户名进行查找"/>
                         <input type="button" class="search" onclick = "searchUser()" value="搜索" />
                     </div>
                 </div>
@@ -81,7 +81,7 @@
         $("#Admin_a").addClass("active-menu");
         $.ajax({
             type: "POST",
-            url: "/admin/roleTable",
+            url: "/admin/userTable/all",
             datatype: "json",
             success: function (data) {
                 //console.log(data);
@@ -126,6 +126,7 @@
             + " </tbody> "
             + "</table>"
             + "</div>"
+            + "<text class='edit-button' onclick='deleteUser("+data[i].userId+")'> 封禁 </text>"
             + "</div> "
             + "</div>"
         }
@@ -164,31 +165,52 @@
         let searchUserName = $("#searchTarget").val();
         $.ajax({
             type: "POST",
-            url: "/admin/roleTable/search",
+            url: "/admin/userTable/search",
             datatype: "json",
             data: "username=" + searchUserName,
             success: function (data) {
-                console.log(data);
-                console.log("name:"+data.userName);
-                if(data.userName==null){
+                //console.log(data);
+                //console.log("name:"+data.userName);
+                if(data.length===0){
                     div.style.display='none';
                     alert("该用户不存在！");
                     flag = false;
                 }
                 else {
-                    let gender = "其他";
-                    if (data.userGender === 0)
-                        gender = "女";
-                    else if (data.userGender === 1)
-                        gender = "男";
-                    let input1 = document.getElementById("search_user");
-                    input1.innerHTML= " <div class = 'panel-heading' id = search_user >搜索结果——用户名: " + data.userName + "</div>";
-                    let input2 = document.getElementById("userAssignment_val_search");
-                    input2.innerHTML= "<th id ='userAssignment_val_search' class = 'cell-val  userBaseInfo-cell-val'>" + data.userAssignment + "</th>";
-                    let input3 = document.getElementById("userEmail_val_search");
-                    input3.innerHTML= "<th id ='userEmail_val_search' class = 'cell-val  userBaseInfo-cell-val'>" + data.userEmail + "</th>";
-                    let input4 = document.getElementById("userGender_val_search");
-                    input4.innerHTML= "<th id ='userGender_val_search' class = 'cell-val  userBaseInfo-cell-val gender'>" + gender + "</th>";
+                    let resHtml = "";
+
+                    for(let i = 0; i < data.length; i++){
+                        let gender = "其他";
+                        if (data[i].userGender === 0)
+                            gender = "女";
+                        else if (data[i].userGender === 1)
+                            gender = "男";
+                        resHtml += "<div class='panel panel-default'>"
+                            + " <div class = 'panel-heading' id = search_user >搜索结果——用户名:"+data[i].userName +" </div>"
+                            + "<div class='panel-body'>"
+                            + "<div class='table-responsive'>"
+                            + "<table class='table table-striped table-bordered table-hover'>"
+                            + "<tbody>"
+                            + "<tr>"
+                            + "<th id ='userAssignment_head_search' class = 'cell-head userBaseInfo-cell-head'>个性签名</th>"
+                            + "<th id ='userAssignment_val_search' class = 'cell-val  userBaseInfo-cell-val'>" + data[i].userAssignment + "</th>"
+                            + "</tr>"
+                            + "<tr>"
+                            + "<th id ='userEmail_head_search' class = 'cell-head userBaseInfo-cell-head'>邮箱地址</th>"
+                            + "<th id ='userEmail_val_search' class = 'cell-val  userBaseInfo-cell-val'>" + data[i].userEmail + "</th>"
+                            + "</tr>"
+                            + "<tr>"
+                            + "<th id ='userGender_head_search' class = 'cell-head userBaseInfo-cell-head'>性别</th>"
+                            + "<th id ='userGender_val_search' class = 'cell-val  userBaseInfo-cell-val gender'>" + gender + "</th>"
+                            + "</tr>"
+                            + " </tbody> "
+                            + "</table>"
+                            + "</div>"
+                            + "<text class='edit-button' onclick='deleteUser("+data[i].userId+")'> 封禁 </text>"
+                            + "</div>"
+                            + "</div>";
+                    }
+                    $("#userTarget").html(resHtml);
                     div.style.display='block';
                 }
             },
@@ -198,6 +220,34 @@
                 alert("服务器似乎出现了一点问题，稍后再试试吧");
             }
         })
+    }
+
+    function deleteUser(userId) {
+        if(confirm("确认封禁ID为"+userId+"的用户？\n该操作将删除该用户的相关信息和创建过的所有卡牌。")){
+            //console.log("delete " + userId);
+            $.ajax({
+                type: "GET",
+                url: "/admin/userTable/delete",
+                datatype: "json",
+                data: "userId=" + userId,
+                success: function (data) {
+                    if(data === "TRUE"){
+                        alert("成功封禁该用户。");
+                        location.reload();
+                    }
+                    else {
+                        console.log(data)
+                        console.log("ERROR");
+                        alert("服务器似乎出现了一点问题，稍后再试试吧");
+                    }
+                },
+                error: function (data) {
+                    console.log(data)
+                    console.log("Failed");
+                    alert("服务器似乎出现了一点问题，稍后再试试吧");
+                }
+            })
+        }
     }
 
 </script>

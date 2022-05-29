@@ -24,7 +24,7 @@ public class RoleTable_Admin_Controller {
     @Autowired
     RoleBaseInfoRepository roleBaseInfoRepository;
 
-    @GetMapping("/admin/roleTable")
+    @GetMapping("/admin/userTable")
     public String adminUserTable(){
         //TODO: 返回管理员搜索角色卡页面的html文件名
         return "admin";
@@ -32,7 +32,7 @@ public class RoleTable_Admin_Controller {
 
 
     @ResponseBody
-    @RequestMapping("/admin/roleTable")
+    @RequestMapping("/admin/userTable/all")
     public List<user> adminSearchUserTable(){
         List<user> users = userRepository.findAllUsers();
         return users;
@@ -40,14 +40,21 @@ public class RoleTable_Admin_Controller {
 
 //findByUserName(@Param("username") String username);
     @ResponseBody
-    @RequestMapping("/admin/roleTable/search")
-    public user adminSearchUser(
-            @RequestParam("username") String username,
-            Model model, HttpSession session
+    @RequestMapping("/admin/userTable/search")
+    public List<user> adminSearchUser(
+            @RequestParam("username") String username
     )
     {
-        //TODO: 返回查找结果
-        user u = userRepository.findByUserName(username);
-        return u;
+        //返回查找结果
+        return userRepository.searchByUserName(username);
+    }
+
+    @ResponseBody
+    @RequestMapping("/admin/userTable/delete")
+    public String adminDeleteUser(
+            @RequestParam("userId") Integer userId
+    ){
+        userRepository.deleteById(userId);
+        return "TRUE";
     }
 }

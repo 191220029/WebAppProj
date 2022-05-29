@@ -92,7 +92,7 @@
                 <a id="Modify_UserInfo_a" th:href="@{/userInfo}"><i class="fa fa-table"></i>Your profile</a>
             </li>
             <li>
-                <a id="Admin_a" th:href="@{/admin/roleTable}" th:if="${session.privilegeLevel}==0"><i class="fa fa-tasks"></i>Admin</a>
+                <a id="Admin_a" th:href="@{/admin/userTable}" th:if="${session.privilegeLevel}==0"><i class="fa fa-tasks"></i>Admin</a>
             </li>
             <li>
                 <a id="RoleBook_a"><i class="fa fa-book"></i>Role book <span class="fa arrow"></span></a>
