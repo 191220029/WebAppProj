@@ -51,6 +51,7 @@ public class LogonController {
         }
         else {
             session.setAttribute("loginUser", users.get(0).getUserName());
+            session.setAttribute("privilegeLevel", users.get(0).getUserPrivilegeLevel());
             session.setAttribute("UserId", users.get(0).getUserId());
             session.setAttribute("photo", "/serverfs/img/usricon/default.jpg");
             return "OK";

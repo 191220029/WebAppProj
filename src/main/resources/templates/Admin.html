@@ -206,12 +206,14 @@
                             + " </tbody> "
                             + "</table>"
                             + "</div>"
-                            + "<text class='edit-button' onclick='deleteUser("+data[i].userId+")'> 封禁 </text>"
+                            + "<text class='edit-button' " +
+                            "onclick='deleteUser("+data[i].userId+")'> 封禁 </text>"
                             + "</div>"
                             + "</div>";
                     }
                     $("#userTarget").html(resHtml);
                     div.style.display='block';
+
                 }
             },
             error: function (data) {

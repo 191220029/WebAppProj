@@ -29,7 +29,8 @@ public class RoleTable_Admin_Controller {
     RoleBaseInfoRepository roleBaseInfoRepository;
 
     @GetMapping("/admin/userTable")
-    public String adminUserTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String adminUserTable(HttpServletRequest request,
+                                 HttpServletResponse response) {
         //返回管理员搜索角色卡页面的html文件名
         Object userId = request.getSession().getAttribute("UserId");
         user u = userRepository.findByUserId(Integer.parseInt(userId.toString()));

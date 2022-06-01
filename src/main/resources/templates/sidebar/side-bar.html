@@ -92,7 +92,8 @@
                 <a id="Modify_UserInfo_a" th:href="@{/userInfo}"><i class="fa fa-table"></i>Your profile</a>
             </li>
             <li>
-                <a id="Admin_a" th:href="@{/admin/userTable}" th:if="${session.privilegeLevel}<=10"><i class="fa fa-tasks"></i>Admin</a>
+                <a id="Admin_a" th:href="@{/admin/userTable}"
+                   th:if="${session.privilegeLevel}<=10"><i class="fa fa-tasks"></i>Admin</a>
             </li>
             <li>
                 <a id="RoleBook_a"><i class="fa fa-book"></i>Role book <span class="fa arrow"></span></a>
@@ -153,69 +154,7 @@
                     </li>
                 </ul>
             </li>
-            <!--
-            <li>
-                <a id="Forms_a" th:href="@{#}"><i class="fa fa-bicycle "></i>Forms <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
 
-                    <li>
-                        <a id="Basic_a" th:href="@{/form}"><i class="fa fa-desktop "></i>Basic </a>
-                    </li>
-                    <li>
-                        <a id="Advance_a" th:href="@{/form-advance}"><i class="fa fa-code "></i>Advance</a>
-                    </li>
-
-
-                </ul>
-            </li>
-            -->
-            <!--
-            <li>
-                <a id="Gallery_a" th:href="@{/gallery}"><i class="fa fa-anchor "></i>Gallery</a>
-            </li>
-            -->
-            <!--
-            <li>
-                <a id="Error_Page_a" th:href="@{/error}"><i class="fa fa-bug "></i>Error Page</a>
-            </li>
-            -->
-            <!--
-            <li>
-                <a id="Login_Page_a" th:href="@{/login}"><i class="fa fa-sign-in "></i>Login Page</a>
-            </li>
-            -->
-            <!--
-            <li>
-                <a id="Multilevel_Link_a" th:href="@{#}"><i class="fa fa-sitemap "></i>Multilevel Link <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a id="Second_Level_Link1_a" th:href="@{#}"><i class="fa fa-bicycle "></i>Second Level Link</a>
-                    </li>
-                    <li>
-                        <a id="Second_Level_Link2_a" th:href="@{#}"><i class="fa fa-flask "></i>Second Level Link</a>
-                    </li>
-                    <li>
-                        <a id="Second_Level_Links_a" th:href="@{#}">Second Level Link<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a id="Third_Level_Link1_a" th:href="@{#}"><i class="fa fa-plus "></i>Third Level Link</a>
-                            </li>
-                            <li>
-                                <a id="Third_Level_Link2_a" th:href="@{#}"><i class="fa fa-comments-o "></i>Third Level Link</a>
-                            </li>
-
-                        </ul>
-
-                    </li>
-                </ul>
-            </li>
-
-            -->
-            <!--
-            <li>
-                <a id="Blank_Page_a" th:href="@{/blank}"><i class="fa fa-square-o "></i>Blank Page</a>
-            </li>
-            -->
         </ul>
 
     </div>
